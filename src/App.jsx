@@ -1,42 +1,36 @@
 import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import Button from './components/Button'
+import Header from './components/Header'
+import Sidebar from './components/Sidebar'
+import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard'
 
 function App() {
-  const [count, setCount] = useState(0)
+  const [user, setUser] = useState({
+    name: "Khushboo Bharati",
+    role: "CEO & Founder",
+    avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+  });
+
+  const handleMonthly = () => console.log("Monthly filter selected");
+  const handleYearly = () => console.log("Yearly filter selected");
+  const handleExport = () => console.log("Export triggered");
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-900 text-white p-4">
-      <div className="flex gap-8 mb-8">
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="w-32 h-32 hover:drop-shadow-[0_0_2em_#646cffaa] transition-all duration-300" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="w-32 h-32 animate-spin-slow hover:drop-shadow-[0_0_2em_#61dafbaa] transition-all duration-300" alt="React logo" />
-        </a>
+    <div className="min-h-screen bg-gray-50 flex flex-col">
+      <Header
+        user={user}
+        onMonthly={handleMonthly}
+        onYearly={handleYearly}
+        onExport={handleExport}
+      />
+
+      <div className="flex flex-1 w-full">
+        <Sidebar />
+
+        <main className="flex-1 py-8 px-8">
+          {/* Dashboard Content Placeholder */}
+          <SuperAdminDashboard />
+        </main>
       </div>
-
-      <h1 className="text-5xl font-bold mb-8 bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent">
-        Vite + React + Tailwind
-      </h1>
-
-      <div className="bg-gray-800 p-8 rounded-xl shadow-2xl border border-gray-700 text-center max-w-md w-full">
-        <Button
-          variant="primary"
-          onClick={() => setCount((count) => count + 1)}
-          className="w-full text-lg shadow-lg hover:shadow-indigo-500/30 mb-6 py-3"
-        >
-          count is {count}
-        </Button>
-        <p className="text-gray-400 mb-4">
-          Edit <code className="bg-gray-700 px-2 py-1 rounded text-pink-400 font-mono">src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-
-      <p className="mt-8 text-gray-500 hover:text-gray-300 transition-colors cursor-default">
-        Click on the Vite and React logos to learn more
-      </p>
     </div>
   )
 }
