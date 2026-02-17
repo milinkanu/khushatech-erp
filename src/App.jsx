@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import Header from './components/Header'
-import Sidebar from './components/Sidebar'
+import Header from './components/layout/Header'
+import Sidebar from './components/layout/Sidebar'
 import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard'
 
 function App() {
@@ -15,7 +15,7 @@ function App() {
   const handleExport = () => console.log("Export triggered");
 
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col">
+    <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
       <Header
         user={user}
         onMonthly={handleMonthly}
@@ -23,7 +23,7 @@ function App() {
         onExport={handleExport}
       />
 
-      <div className="flex flex-1 w-full">
+      <div className="flex flex-col md:flex-row flex-1 w-full">
         <Sidebar />
 
         <main className="flex-1 py-8 px-8">

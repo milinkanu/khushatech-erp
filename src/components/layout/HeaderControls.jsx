@@ -1,6 +1,6 @@
 import React from 'react';
 import { ChevronDown } from 'lucide-react';
-import Button from './Button';
+import Button from '../Button';
 
 const HeaderControls = ({ onMonthly, onYearly, onExport }) => {
     return (

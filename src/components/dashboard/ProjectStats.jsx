@@ -33,18 +33,18 @@ const ProjectStats = () => {
     return (
         <div className="w-full">
             <SectionHeading>Projects</SectionHeading>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
                 {stats.map((stat, index) => (
                     <div
                         key={index}
-                        className="bg-white border border-gray-200 rounded-3xl p-5 flex items-center space-x-4 hover:border-gray-300 transition-colors duration-300 h-full"
+                        className="bg-white border border-gray-200 rounded-[2.5rem] p-6 flex flex-col items-start gap-4 hover:border-gray-300 transition-colors duration-300 h-full"
                     >
-                        <div className={`p-4 rounded-full ${stat.iconBg} shrink-0`}>
-                            {stat.icon}
+                        <div className={`p-4 rounded-full ${stat.iconBg} shrink-0 mb-2`}>
+                            {React.cloneElement(stat.icon, { className: "w-6 h-6 " + stat.icon.props.className.split(' ').pop() })}
                         </div>
                         <div>
-                            <h3 className="text-xl font-bold text-gray-800">{stat.count}</h3>
-                            <p className="text-sm text-gray-500 font-medium">{stat.label}</p>
+                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{stat.count}</h3>
+                            <p className="text-sm text-gray-500 font-medium leading-tight">{stat.label}</p>
                         </div>
                     </div>
                 ))}
