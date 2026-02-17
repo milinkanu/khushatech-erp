@@ -1,0 +1,340 @@
+.container {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    width: 85%;
+    gap: 40px;
+}
+
+.pageContainer {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    padding: 20px 0;
+    background-color: #ffffff;
+    position: relative;
+    overflow: hidden;
+}
+
+.container {
+    display: flex;
+    font-family: 'Poppins', sans-serif;
+    color: #333;
+    padding: 0;
+    margin: 0;
+    width: 85%;
+    gap: 40px;
+    z-index: 1;
+    position: relative;
+}
+
+.ellipseTopLeft,
+.ellipseTopRight,
+.ellipseBottomRight {
+    display: none;
+    position: absolute;
+    border-radius: 50%;
+    background-color: #FFF0E6;
+    z-index: 0;
+}
+
+.leftPanel {
+    width: 50%;
+    background: linear-gradient(180deg, #FBFBFB 0%, #FF9F6C 100%);
+    border-radius: 40px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    aspect-ratio: 1/1.2;
+}
+
+.brandBadge {
+    background-color: white;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-weight: 600;
+    font-size: 14px;
+    width: fit-content;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.arrowsContainer {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    margin-top: auto;
+    margin-bottom: 20px;
+}
+
+.arrowButton {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    width: 200px;
+    height: 50px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.arrowButton:hover {
+    background: rgba(255, 255, 255, 0.3);
+}
+
+.infoCard {
+    background: rgba(255, 255, 255, 0.2);
+    border: 1px solid rgba(255, 255, 255, 0.4);
+    border-radius: 30px;
+    padding: 30px;
+    color: white;
+}
+
+.infoTitle {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 10px;
+}
+
+.infoHeading {
+    font-size: 24px;
+    font-weight: 600;
+    margin-bottom: 10px;
+    line-height: 1.3;
+}
+
+.infoText {
+    font-size: 18px;
+    opacity: 0.9;
+}
+
+.mobileBrand {
+    display: none;
+}
+
+.rightPanel {
+    width: 50%;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.formTitle {
+    font-size: 28px;
+    font-weight: 600;
+    margin-bottom: 5px;
+    text-align: center;
+}
+
+.formSubtitle {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.formRow {
+    display: flex;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+.formGroup {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.input {
+    width: 100%;
+    box-sizing: border-box;
+    padding: 12px 16px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 14px;
+    background-color: #FAFAFA;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.input:focus {
+    border-color: #FF9F6C;
+    background-color: white;
+}
+
+.passwordWrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.passwordInput {
+    width: 100%;
+    padding: 12px 16px;
+    padding-right: 40px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    font-size: 14px;
+    background-color: #FAFAFA;
+    outline: none;
+}
+
+.passwordToggle {
+    position: absolute;
+    right: 12px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #9CA3AF;
+    display: flex;
+    align-items: center;
+}
+
+.submitButton {
+    background: linear-gradient(90deg, #FF6B00 0%, #FF9F6C 100%);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    margin-top: 20px;
+    width: 100%;
+    transition: opacity 0.3s;
+}
+
+.submitButton:hover {
+    opacity: 0.9;
+}
+
+.footerText {
+    margin-top: 20px;
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+}
+
+.link {
+    color: #333;
+    font-weight: 500;
+    text-decoration: none;
+    margin-left: 5px;
+}
+
+.link:hover {
+    text-decoration: underline;
+}
+
+@media (max-width: 768px) {
+    .container {
+        flex-direction: column;
+        height: auto;
+        padding: 20px;
+        width: 100%;
+        gap: 0;
+    }
+
+    .leftPanel {
+        display: none;
+    }
+
+    .rightPanel {
+        width: 100%;
+        padding: 0;
+    }
+
+    .mobileBrand {
+        display: block;
+        background: linear-gradient(90deg, #FF6B00 0%, #FF9F6C 100%);
+        color: white;
+        padding: 12px 24px;
+        border-radius: 30px;
+        text-align: center;
+        width: fit-content;
+        margin: 0 auto 30px auto;
+        font-weight: 600;
+        font-size: 16px;
+        box-shadow: 0 4px 15px rgba(255, 107, 0, 0.2);
+    }
+
+    .formRow {
+        flex-direction: row;
+        gap: 15px;
+    }
+
+    .link {
+        white-space: nowrap;
+    }
+
+    .ellipseTopLeft {
+        display: block;
+        top: -120px;
+        left: -120px;
+        width: 350px;
+        height: 350px;
+    }
+
+    .ellipseTopRight {
+        display: block;
+        top: 80px;
+        right: -30px;
+        width: 100px;
+        height: 100px;
+    }
+
+    .ellipseBottomRight {
+        display: block;
+        bottom: -80px;
+        right: -80px;
+        width: 250px;
+        height: 250px;
+    }
+}
+
+.otpContainer {
+    display: flex;
+    gap: 8px;
+    justify-content: space-between;
+    margin-bottom: 20px;
+}
+
+.otpInput {
+    width: 100%;
+    height: 50px;
+    border: 1px solid #E5E7EB;
+    border-radius: 12px;
+    background-color: #FAFAFA;
+    text-align: center;
+    font-size: 18px;
+    font-weight: 600;
+    outline: none;
+    transition: border-color 0.2s;
+}
+
+.otpInput:focus {
+    border-color: #FF9F6C;
+    background-color: white;
+}
+
+.otpLabel {
+    font-size: 14px;
+    font-weight: 500;
+    margin-bottom: 8px;
+    color: #333;
+}

@@ -1,9 +1,14 @@
-import { useState } from 'react'
-import Header from './components/layout/Header'
-import Sidebar from './components/layout/Sidebar'
-import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard'
+import { useState } from 'react';
+import Header from './components/layout/Header';
+import Sidebar from './components/layout/Sidebar';
+import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
+import Signin from './components/auth/Signin';
+import Signup from './components/auth/Signup';
 
 function App() {
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
+
   const [user, setUser] = useState({
     name: "Khushboo Bharati",
     role: "CEO & Founder",
@@ -13,6 +18,13 @@ function App() {
   const handleMonthly = () => console.log("Monthly filter selected");
   const handleYearly = () => console.log("Yearly filter selected");
   const handleExport = () => console.log("Export triggered");
+
+  if (!isAuthenticated) {
+    if (currentAuthView === 'signup') {
+      return <Signup onNavigate={setCurrentAuthView} onSignin={() => setIsAuthenticated(true)} />;
+    }
+    return <Signin onSignin={() => setIsAuthenticated(true)} onNavigate={setCurrentAuthView} />;
+  }
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
