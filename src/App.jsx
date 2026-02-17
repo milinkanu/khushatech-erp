@@ -4,10 +4,12 @@ import Sidebar from './components/layout/Sidebar';
 import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
+import Profile from './components/profile/Profile';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile'
 
   const [user, setUser] = useState({
     name: "Khushboo Bharati",
@@ -19,12 +21,20 @@ function App() {
   const handleYearly = () => console.log("Yearly filter selected");
   const handleExport = () => console.log("Export triggered");
 
+  const handleLogout = () => {
+    setIsAuthenticated(false);
+    setCurrentView('dashboard');
+    setCurrentAuthView('signin');
+  };
+
   if (!isAuthenticated) {
     if (currentAuthView === 'signup') {
       return <Signup onNavigate={setCurrentAuthView} onSignin={() => setIsAuthenticated(true)} />;
     }
     return <Signin onSignin={() => setIsAuthenticated(true)} onNavigate={setCurrentAuthView} />;
   }
+
+
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
@@ -33,14 +43,18 @@ function App() {
         onMonthly={handleMonthly}
         onYearly={handleYearly}
         onExport={handleExport}
+        onProfileClick={() => setCurrentView('profile')}
       />
 
       <div className="flex flex-col md:flex-row flex-1 w-full">
         <Sidebar />
 
         <main className="flex-1 py-8 px-8">
-          {/* Dashboard Content Placeholder */}
-          <SuperAdminDashboard />
+          {currentView === 'dashboard' ? (
+            <SuperAdminDashboard />
+          ) : (
+            <Profile user={user} onLogout={handleLogout} />
+          )}
         </main>
       </div>
     </div>

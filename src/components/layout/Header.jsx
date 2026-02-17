@@ -14,7 +14,8 @@ const Header = ({
     },
     onMonthly = () => console.log('Monthly clicked'),
     onYearly = () => console.log('Yearly clicked'),
-    onExport = () => console.log('Export clicked')
+    onExport = () => console.log('Export clicked'),
+    onProfileClick
 }) => {
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50 flex h-[95px] w-full shrink-0">
@@ -51,9 +52,12 @@ const Header = ({
                     </div>
 
                     {/* Vertical Divider */}
-                    <div className="h-10 w-px bg-gray-200 mx-0"></div>
+                    <div className="h-full w-px bg-gray-300 mx-0"></div>
 
-                    <div className="hidden md:block pl-8">
+                    <div
+                        className="hidden md:block pl-8 cursor-pointer hover:opacity-80 transition-opacity"
+                        onClick={onProfileClick}
+                    >
                         <UserProfile
                             name={user.name}
                             role={user.role}
