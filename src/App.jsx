@@ -1,17 +1,18 @@
 import { useState } from 'react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
-import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
+// import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
+import EmployeeDashboard from './components/employee-dashboard/EmployeeDashboard';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile'
 
-  const [user, setUser] = useState({
+  const [user] = useState({
     name: "Khushboo Bharati",
     role: "CEO & Founder",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -51,7 +52,7 @@ function App() {
 
         <main className="flex-1 py-8 px-8">
           {currentView === 'dashboard' ? (
-            <SuperAdminDashboard />
+            <EmployeeDashboard />
           ) : (
             <Profile user={user} onLogout={handleLogout} />
           )}
