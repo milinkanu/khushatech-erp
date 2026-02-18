@@ -18,9 +18,8 @@
     margin-bottom: 1.5rem;
 }
 
-.addEmployeeButtonMobile {
+.addProjectButtonMobile {
     display: flex;
-    /* Shown on mobile */
     gap: 0.5rem;
     padding: 0.625rem 1rem;
     border-radius: 0.75rem;
@@ -30,9 +29,8 @@
     font-weight: 500;
 }
 
-.addEmployeeButtonDesktop {
+.addProjectButtonDesktop {
     display: none;
-    /* Hidden on mobile */
     gap: 0.5rem;
     padding: 0.625rem 1rem;
     border-radius: 0.75rem;
@@ -40,11 +38,6 @@
     transition: all 0.2s;
     font-size: 0.875rem;
     font-weight: 500;
-}
-
-.addEmployeeButtonMobile:hover,
-.addEmployeeButtonDesktop:hover {
-    box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3);
 }
 
 .filtersGroup {
@@ -53,10 +46,8 @@
     overflow-x: auto;
     padding-bottom: 0.5rem;
     margin-bottom: -0.5rem;
-    /* Offset padding */
     scrollbar-width: none;
     width: 100%;
-    /* Take full width on mobile */
 }
 
 .filtersGroup::-webkit-scrollbar {
@@ -64,19 +55,16 @@
 }
 
 @media (min-width: 768px) {
-    .addEmployeeButtonMobile {
+    .addProjectButtonMobile {
         display: none;
-        /* Hide on desktop */
     }
 
-    .addEmployeeButtonDesktop {
+    .addProjectButtonDesktop {
         display: flex;
-        /* Show on desktop */
     }
 
     .filtersGroup {
         width: auto;
-        /* Auto width on desktop */
     }
 }
 
@@ -86,12 +74,6 @@
     border: 1px solid #f3f4f6;
     overflow: hidden;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-.tableContainer table {
-    min-width: 100%;
-    border-collapse: collapse;
-    /* Ensure borders merge nicely */
 }
 
 .tableWrapper {
@@ -117,18 +99,6 @@
     background: #d1d5db;
 }
 
-.departmentBadge {
-    display: inline-flex;
-    padding: 0.25rem 0.75rem;
-    font-size: 0.75rem;
-    line-height: 1.25rem;
-    font-weight: 600;
-    border-radius: 9999px;
-    margin-right: 0.5rem;
-    margin-bottom: 0.25rem;
-}
-
-/* Utilities for overrides in JSX if needed, though mostly covered above */
 .sectionHeading {
     margin-bottom: 0 !important;
     font-size: 1.875rem;
@@ -136,11 +106,6 @@
     color: #111827;
 }
 
-.sectionHeadingWrapper {
-    margin-bottom: 0;
-}
-
-/* Filter Buttons */
 .filterButton {
     display: flex;
     gap: 0.5rem;
@@ -149,6 +114,14 @@
     flex-shrink: 0;
     border: 1px solid #e5e7eb;
     background-color: white;
+    align-items: center;
+    padding: 0.5rem 1rem;
+    font-size: 0.875rem;
+    color: #374151;
+}
+
+.filterButton:hover {
+    background-color: #f9fafb;
 }
 
 .chevronIcon {
@@ -157,21 +130,23 @@
 
 .exportButton {
     display: flex;
+    align-items: center;
     gap: 0.5rem;
     border-radius: 0.75rem;
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
+    padding: 0.5rem 1.5rem;
     flex-shrink: 0;
     background-color: #1A1A1A;
     color: white;
     border: none;
+    font-size: 0.875rem;
+    font-weight: 500;
 }
 
 .exportButton:hover {
     background-color: #000000;
 }
 
-/* Table Styles - Ported from Clients */
+/* Table Styles - Matching Clients/Employees table */
 .tableHeader {
     background-color: rgba(249, 250, 251, 0.5);
 }
@@ -185,7 +160,6 @@
     letter-spacing: 0.05em;
     text-align: left;
     border-right: 1px solid #e5e7eb;
-    /* Vertical line */
 }
 
 .tableHeader th:last-child {
@@ -209,7 +183,6 @@
     padding: 0.75rem 1rem;
     white-space: nowrap;
     border-right: 1px solid #e5e7eb;
-    /* Vertical line */
 }
 
 .tableCell:last-child {
@@ -238,26 +211,8 @@
     white-space: nowrap;
     text-align: center;
     border-right: 1px solid #e5e7eb;
-    /* Vertical line */
 }
 
 .actionCell:last-child {
     border-right: none;
-}
-
-.actionsWrapper {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-.actionButton {
-    color: #111827;
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.actionButton:hover {
-    color: #4b5563;
 }

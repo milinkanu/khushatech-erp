@@ -6,11 +6,14 @@ import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
 import Employees from './components/employees/Employees';
+import Clients from './components/clients/Clients';
+import ClientDetails from './components/clients/ClientDetails';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details'
+  const [selectedClient, setSelectedClient] = useState(null);
 
   const [user, setUser] = useState({
     name: "Khushboo Bharati",
@@ -26,6 +29,11 @@ function App() {
     setIsAuthenticated(false);
     setCurrentView('dashboard');
     setCurrentAuthView('signin');
+  };
+
+  const handleClientClick = (client) => {
+    setSelectedClient(client);
+    setCurrentView('client-details');
   };
 
   if (!isAuthenticated) {
@@ -49,13 +57,17 @@ function App() {
       />
 
       <div className="flex flex-col md:flex-row flex-1 w-full">
-        <Sidebar activeView={currentView} onNavigate={setCurrentView} />
+        <Sidebar activeView={currentView === 'client-details' ? 'clients' : currentView} onNavigate={setCurrentView} />
 
         <main className="flex-1 py-8 px-8 min-w-0 overflow-auto">
           {currentView === 'dashboard' ? (
             <SuperAdminDashboard />
           ) : currentView === 'employees' ? (
             <Employees />
+          ) : currentView === 'clients' ? (
+            <Clients onClientClick={handleClientClick} />
+          ) : currentView === 'client-details' ? (
+            <ClientDetails client={selectedClient} />
           ) : (
             <Profile user={user} onLogout={handleLogout} />
           )}

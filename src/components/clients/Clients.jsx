@@ -1,83 +1,64 @@
-import React from 'react';
+import React, { useState } from 'react';
 import SectionHeading from '../SectionHeading';
 import Button from '../Button';
 import { Plus, Upload, ChevronDown, Pencil, Trash2 } from 'lucide-react';
-import styles from './Employees.module.css';
-import AddEmployeeModal from './AddEmployeeModal';
+import styles from './Clients.module.css';
+import AddClientModal from './AddClientModal';
 
-const Employees = () => {
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
-    const employees = [
+const Clients = ({ onClientClick }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+    const clients = [
         {
             id: 1,
-            name: 'Kashyap Koyani',
-            role: 'Project Manager',
+            name: 'Rahul Mishra',
+            projects: ['E-Com Website', 'E-Com App'],
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            departments: ['Development', 'Management'],
             avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
             id: 2,
-            name: 'Mohammad Faraz',
-            role: 'Product Designer',
+            name: 'Ajay Deewan',
+            projects: [],
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            departments: ['Designing', 'Development'],
             avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
             id: 3,
-            name: 'Mohammad Aaves',
-            role: 'Backend Developer',
+            name: 'Aakash Wadode',
+            projects: ['E-Com Website', 'E-Com App'],
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            departments: ['Development'],
             avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
             id: 4,
-            name: 'Sangmesh',
-            role: 'Backend Developer',
+            name: 'Vijay Kumar',
+            projects: [],
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            departments: ['Development'],
             avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         }
     ];
 
-    const getDepartmentStyle = (dept) => {
-        switch (dept) {
-            case 'Development':
-                return 'bg-orange-100 text-orange-600';
-            case 'Management':
-                return 'bg-blue-100 text-blue-600';
-            case 'Designing':
-                return 'bg-green-100 text-green-600';
-            default:
-                return 'bg-gray-100 text-gray-700';
-        }
-    };
-
     return (
         <div className={styles.pageContainer}>
             {/* Header Row: Title & Add Button */}
+            {/* Header: Title */}
             <div className={styles.headerRow}>
-                <h2 className={styles.sectionHeadingWrapper}>
-                    <SectionHeading className="!mb-0 text-3xl font-bold text-gray-900">Employees</SectionHeading>
-                </h2>
+                <div>
+                    <h2 className={styles.sectionHeading}>Clients</h2>
+                    <p className={styles.subHeading}>Click on client's name to see the projects list of that client.</p>
+                </div>
 
                 <Button
                     variant="primary"
-                    className={styles.addEmployeeButtonMobile}
+                    className={styles.addClientButtonMobile}
                     onClick={() => setIsModalOpen(true)}
                 >
                     <Plus size={18} />
-                    Add Employee
+                    Add Client
                 </Button>
             </div>
 
@@ -85,11 +66,11 @@ const Employees = () => {
             <div className={styles.controlsRow}>
                 <Button
                     variant="primary"
-                    className={styles.addEmployeeButtonDesktop}
+                    className={styles.addClientButtonDesktop}
                     onClick={() => setIsModalOpen(true)}
                 >
                     <Plus size={18} />
-                    Add Employee
+                    Add Client
                 </Button>
 
                 <div className={styles.filtersGroup}>
@@ -106,58 +87,63 @@ const Employees = () => {
             </div>
 
             {/* Table Section */}
-            <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-500 mb-4">Employees</h3>
-            </div>
-
             <div className={styles.tableContainer}>
                 <div className={`${styles.tableWrapper} ${styles.customScrollbar}`}>
                     <table>
                         <thead className={styles.tableHeader}>
                             <tr>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Salary</th>
-                                <th>Department</th>
-                                <th style={{ textAlign: 'center' }}>Action</th>
+                                <th scope="col" className={styles.colName}>
+                                    Name
+                                </th>
+                                <th scope="col" className={styles.colProjects}>
+                                    Projects
+                                </th>
+                                <th scope="col" className={styles.colPhone}>
+                                    Phone
+                                </th>
+                                <th scope="col" className={styles.colEmail}>
+                                    Email
+                                </th>
+                                <th scope="col" className={styles.colAction}>
+                                    Action
+                                </th>
                             </tr>
                         </thead>
                         <tbody className={styles.tableBody}>
-                            {employees.map((employee) => (
-                                <tr key={employee.id}>
+                            {clients.map((client) => (
+                                <tr key={client.id}>
                                     <td className={styles.tableCell}>
-                                        <div className="flex items-center gap-3">
-                                            <div className="shrink-0 h-10 w-10">
-                                                <img className={styles.avatar} src={employee.avatar} alt="" />
+                                        <div className={styles.clientInfo}>
+                                            <div className={styles.avatarContainer}>
+                                                <img className={styles.avatar} src={client.avatar} alt="" />
                                             </div>
-                                            <div className="text-sm font-medium text-gray-700">{employee.name}</div>
+                                            <div
+                                                className={styles.clientName}
+                                                onClick={() => onClientClick && onClientClick(client)}
+                                            >
+                                                {client.name}
+                                            </div>
                                         </div>
                                     </td>
                                     <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.role}</div>
-                                    </td>
-                                    <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.phone}</div>
-                                    </td>
-                                    <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.email}</div>
-                                    </td>
-                                    <td className={styles.tableCell}>
-                                        <div className="text-sm font-medium text-gray-700">{employee.salary}</div>
-                                    </td>
-                                    <td className={styles.tableCell}>
-                                        <div className="flex flex-wrap gap-2">
-                                            {employee.departments.map((dept, idx) => (
-                                                <span
-                                                    key={idx}
-                                                    className={`${styles.departmentBadge} ${getDepartmentStyle(dept)}`}
-                                                >
-                                                    {dept}
-                                                </span>
-                                            ))}
+                                        <div className={styles.projectsWrapper}>
+                                            {client.projects.length > 0 &&
+                                                client.projects.map((project, idx) => (
+                                                    <span
+                                                        key={idx}
+                                                        className={styles.projectBadge}
+                                                    >
+                                                        {project}
+                                                    </span>
+                                                ))
+                                            }
                                         </div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{client.phone}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{client.email}</div>
                                     </td>
                                     <td className={styles.actionCell}>
                                         <div className={styles.actionsWrapper}>
@@ -176,11 +162,11 @@ const Employees = () => {
                 </div>
             </div>
 
-            {/* Add Employee Modal */}
-            <AddEmployeeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            {/* Add Client Modal */}
+            <AddClientModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         </div>
     );
 };
 
-export default Employees;
+export default Clients;

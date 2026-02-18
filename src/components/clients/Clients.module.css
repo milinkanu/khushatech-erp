@@ -18,7 +18,23 @@
     margin-bottom: 1.5rem;
 }
 
-.addEmployeeButtonMobile {
+.filtersGroup {
+    display: flex;
+    gap: 0.75rem;
+    overflow-x: auto;
+    padding-bottom: 0.5rem;
+    margin-bottom: -0.5rem;
+    /* Offset padding */
+    scrollbar-width: none;
+    width: 100%;
+    /* Take full width on mobile for better scroll */
+}
+
+.filtersGroup::-webkit-scrollbar {
+    display: none;
+}
+
+.addClientButtonMobile {
     display: flex;
     /* Shown on mobile */
     gap: 0.5rem;
@@ -30,7 +46,7 @@
     font-weight: 500;
 }
 
-.addEmployeeButtonDesktop {
+.addClientButtonDesktop {
     display: none;
     /* Hidden on mobile */
     gap: 0.5rem;
@@ -42,56 +58,47 @@
     font-weight: 500;
 }
 
-.addEmployeeButtonMobile:hover,
-.addEmployeeButtonDesktop:hover {
+.addClientButtonMobile:hover,
+.addClientButtonDesktop:hover {
     box-shadow: 0 10px 15px -3px rgba(249, 115, 22, 0.3);
 }
 
-.filtersGroup {
-    display: flex;
-    gap: 0.75rem;
-    overflow-x: auto;
-    padding-bottom: 0.5rem;
-    margin-bottom: -0.5rem;
-    /* Offset padding */
-    scrollbar-width: none;
-    width: 100%;
-    /* Take full width on mobile */
-}
-
-.filtersGroup::-webkit-scrollbar {
+.subHeading {
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-top: 0.25rem;
     display: none;
+    /* Default hidden on mobile as requested */
 }
 
 @media (min-width: 768px) {
-    .addEmployeeButtonMobile {
-        display: none;
-        /* Hide on desktop */
-    }
-
-    .addEmployeeButtonDesktop {
-        display: flex;
-        /* Show on desktop */
-    }
-
     .filtersGroup {
         width: auto;
-        /* Auto width on desktop */
+        margin-left: 0;
+        padding-left: 0;
+    }
+
+    .addClientButtonMobile {
+        display: none;
+    }
+
+    .addClientButtonDesktop {
+        display: flex;
+    }
+
+    .subHeading {
+        display: block;
+        /* Show on desktop */
     }
 }
 
 .tableContainer {
     background-color: #fff;
     border-radius: 1.5rem;
+    /* rounded-3xl approx */
     border: 1px solid #f3f4f6;
     overflow: hidden;
     box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-}
-
-.tableContainer table {
-    min-width: 100%;
-    border-collapse: collapse;
-    /* Ensure borders merge nicely */
 }
 
 .tableWrapper {
@@ -117,18 +124,20 @@
     background: #d1d5db;
 }
 
-.departmentBadge {
+/* Badge Styling */
+.projectBadge {
     display: inline-flex;
     padding: 0.25rem 0.75rem;
     font-size: 0.75rem;
     line-height: 1.25rem;
     font-weight: 600;
     border-radius: 9999px;
+    background-color: #f3f4f6;
+    color: #374151;
     margin-right: 0.5rem;
     margin-bottom: 0.25rem;
 }
 
-/* Utilities for overrides in JSX if needed, though mostly covered above */
 .sectionHeading {
     margin-bottom: 0 !important;
     font-size: 1.875rem;
@@ -136,11 +145,6 @@
     color: #111827;
 }
 
-.sectionHeadingWrapper {
-    margin-bottom: 0;
-}
-
-/* Filter Buttons */
 .filterButton {
     display: flex;
     gap: 0.5rem;
@@ -171,7 +175,12 @@
     background-color: #000000;
 }
 
-/* Table Styles - Ported from Clients */
+.tableContainer table {
+    min-width: 100%;
+    border-collapse: collapse;
+    /* Ensure borders merge nicely */
+}
+
 .tableHeader {
     background-color: rgba(249, 250, 251, 0.5);
 }
@@ -216,26 +225,11 @@
     border-right: none;
 }
 
-.avatar {
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 9999px;
-    object-fit: cover;
-}
-
-.textCell {
-    font-size: 0.875rem;
-    color: #6b7280;
-}
-
-.fontMedium {
-    font-weight: 500;
-    color: #374151;
-}
-
 .actionCell {
     padding: 0.75rem 1rem;
     white-space: nowrap;
+    font-size: 0.875rem;
+    font-weight: 500;
     text-align: center;
     border-right: 1px solid #e5e7eb;
     /* Vertical line */
@@ -243,6 +237,58 @@
 
 .actionCell:last-child {
     border-right: none;
+}
+
+.clientInfo {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+
+.avatarContainer {
+    flex-shrink: 0;
+    height: 2.5rem;
+    width: 2.5rem;
+}
+
+.avatar {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.clientName {
+    font-size: 0.875rem;
+    font-weight: 500;
+    color: #374151;
+    text-decoration: underline;
+    text-decoration-color: #d1d5db;
+    text-underline-offset: 4px;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.clientName:hover {
+    color: #f97316;
+    text-decoration-color: #f97316;
+}
+
+.projectsWrapper {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.noProjects {
+    color: #9ca3af;
+    font-size: 0.875rem;
+    font-style: italic;
+}
+
+.textCell {
+    font-size: 0.875rem;
+    color: #6b7280;
 }
 
 .actionsWrapper {
@@ -256,8 +302,31 @@
     background: none;
     border: none;
     cursor: pointer;
+    transition: color 0.15s;
 }
 
 .actionButton:hover {
     color: #4b5563;
+}
+
+/* Column Width Utilities */
+.colName {
+    min-width: 200px;
+}
+
+.colProjects {
+    min-width: 250px;
+}
+
+.colPhone {
+    min-width: 150px;
+}
+
+.colEmail {
+    min-width: 200px;
+}
+
+.colAction {
+    min-width: 100px;
+    text-align: center;
 }

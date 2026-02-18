@@ -1,12 +1,14 @@
-import React from 'react';
-import SectionHeading from '../SectionHeading';
-import Button from '../Button';
-import { Plus, Upload, ChevronDown, Pencil, Trash2 } from 'lucide-react';
-import styles from './Employees.module.css';
-import AddEmployeeModal from './AddEmployeeModal';
 
-const Employees = () => {
-    const [isModalOpen, setIsModalOpen] = React.useState(false);
+import React, { useState } from 'react';
+import { Plus, Upload, ChevronDown } from 'lucide-react';
+import Button from '../Button';
+import AddProjectModal from './AddProjectModal';
+import styles from './ClientDetails.module.css';
+
+const ClientDetails = ({ client }) => {
+    const [isModalOpen, setIsModalOpen] = useState(false);
+
+    // Mock employees data as per screenshot
     const employees = [
         {
             id: 1,
@@ -15,7 +17,6 @@ const Employees = () => {
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
             salary: '₹ 25,000',
-            departments: ['Development', 'Management'],
             avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
@@ -25,7 +26,6 @@ const Employees = () => {
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
             salary: '₹ 25,000',
-            departments: ['Designing', 'Development'],
             avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
@@ -35,7 +35,6 @@ const Employees = () => {
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
             salary: '₹ 25,000',
-            departments: ['Development'],
             avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         },
         {
@@ -45,39 +44,26 @@ const Employees = () => {
             phone: '+91-9876543210',
             email: 'employeename@gmail.com',
             salary: '₹ 25,000',
-            departments: ['Development'],
             avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
         }
     ];
 
-    const getDepartmentStyle = (dept) => {
-        switch (dept) {
-            case 'Development':
-                return 'bg-orange-100 text-orange-600';
-            case 'Management':
-                return 'bg-blue-100 text-blue-600';
-            case 'Designing':
-                return 'bg-green-100 text-green-600';
-            default:
-                return 'bg-gray-100 text-gray-700';
-        }
-    };
+    // Fallback if client prop isn't provided or name is missing, though typical flow ensures it
+    const clientName = client?.name || "Rahul Mishra";
 
     return (
         <div className={styles.pageContainer}>
             {/* Header Row: Title & Add Button */}
             <div className={styles.headerRow}>
-                <h2 className={styles.sectionHeadingWrapper}>
-                    <SectionHeading className="!mb-0 text-3xl font-bold text-gray-900">Employees</SectionHeading>
-                </h2>
+                <h2 className={styles.sectionHeading}>{clientName}'s Projects</h2>
 
                 <Button
                     variant="primary"
-                    className={styles.addEmployeeButtonMobile}
+                    className={styles.addProjectButtonMobile}
                     onClick={() => setIsModalOpen(true)}
                 >
                     <Plus size={18} />
-                    Add Employee
+                    Add Project
                 </Button>
             </div>
 
@@ -85,31 +71,27 @@ const Employees = () => {
             <div className={styles.controlsRow}>
                 <Button
                     variant="primary"
-                    className={styles.addEmployeeButtonDesktop}
+                    className={styles.addProjectButtonDesktop}
                     onClick={() => setIsModalOpen(true)}
                 >
                     <Plus size={18} />
-                    Add Employee
+                    Add Project
                 </Button>
 
                 <div className={styles.filtersGroup}>
-                    <Button variant="outline" className={styles.filterButton}>
+                    <button className={styles.filterButton}>
                         Monthly <ChevronDown size={16} className={styles.chevronIcon} />
-                    </Button>
-                    <Button variant="outline" className={styles.filterButton}>
+                    </button>
+                    <button className={styles.filterButton}>
                         Yearly <ChevronDown size={16} className={styles.chevronIcon} />
-                    </Button>
-                    <Button variant="dark" className={styles.exportButton}>
+                    </button>
+                    <button className={styles.exportButton}>
                         <Upload size={16} /> Export
-                    </Button>
+                    </button>
                 </div>
             </div>
 
             {/* Table Section */}
-            <div className="mb-4">
-                <h3 className="text-xl font-bold text-gray-500 mb-4">Employees</h3>
-            </div>
-
             <div className={styles.tableContainer}>
                 <div className={`${styles.tableWrapper} ${styles.customScrollbar}`}>
                     <table>
@@ -120,8 +102,6 @@ const Employees = () => {
                                 <th>Phone</th>
                                 <th>Email</th>
                                 <th>Salary</th>
-                                <th>Department</th>
-                                <th style={{ textAlign: 'center' }}>Action</th>
                             </tr>
                         </thead>
                         <tbody className={styles.tableBody}>
@@ -147,28 +127,6 @@ const Employees = () => {
                                     <td className={styles.tableCell}>
                                         <div className="text-sm font-medium text-gray-700">{employee.salary}</div>
                                     </td>
-                                    <td className={styles.tableCell}>
-                                        <div className="flex flex-wrap gap-2">
-                                            {employee.departments.map((dept, idx) => (
-                                                <span
-                                                    key={idx}
-                                                    className={`${styles.departmentBadge} ${getDepartmentStyle(dept)}`}
-                                                >
-                                                    {dept}
-                                                </span>
-                                            ))}
-                                        </div>
-                                    </td>
-                                    <td className={styles.actionCell}>
-                                        <div className={styles.actionsWrapper}>
-                                            <button className={styles.actionButton}>
-                                                <Trash2 className="w-5 h-5" />
-                                            </button>
-                                            <button className={styles.actionButton}>
-                                                <Pencil className="w-5 h-5" />
-                                            </button>
-                                        </div>
-                                    </td>
                                 </tr>
                             ))}
                         </tbody>
@@ -176,11 +134,11 @@ const Employees = () => {
                 </div>
             </div>
 
-            {/* Add Employee Modal */}
-            <AddEmployeeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+            {/* Add Project Modal */}
+            <AddProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
 
         </div>
     );
 };
 
-export default Employees;
+export default ClientDetails;
