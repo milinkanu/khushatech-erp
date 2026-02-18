@@ -1,6 +1,7 @@
 import React from 'react';
 import SectionHeading from '../SectionHeading';
 import { Briefcase, Smartphone, Globe, LayoutGrid } from 'lucide-react';
+import StatCard from './StatCard';
 
 const ProjectStats = () => {
     const stats = [
@@ -35,18 +36,13 @@ const ProjectStats = () => {
             <SectionHeading>Projects</SectionHeading>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-2 xl:grid-cols-2 gap-4">
                 {stats.map((stat, index) => (
-                    <div
+                    <StatCard
                         key={index}
-                        className="bg-white border border-gray-200 rounded-[2.5rem] p-6 flex flex-row items-center gap-4 hover:border-gray-300 transition-colors duration-300 h-full"
-                    >
-                        <div className={`p-4 rounded-full ${stat.iconBg} shrink-0`}>
-                            {React.cloneElement(stat.icon, { className: "w-6 h-6 " + stat.icon.props.className.split(' ').pop() })}
-                        </div>
-                        <div>
-                            <h3 className="text-2xl font-bold text-gray-900 mb-1">{stat.count}</h3>
-                            <p className="text-sm text-gray-500 font-medium leading-tight">{stat.label}</p>
-                        </div>
-                    </div>
+                        label={stat.label}
+                        count={stat.count}
+                        icon={stat.icon}
+                        iconBg={stat.iconBg}
+                    />
                 ))}
             </div>
         </div>
