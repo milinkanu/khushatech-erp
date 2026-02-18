@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import styles from './Signin.module.css';
 import { Eye, EyeOff } from 'lucide-react';
 import AuthLeftPanel from './AuthLeftPanel';
+import Button from '../Button';
 
 const Signup = ({ onNavigate, onSignin }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -126,9 +127,13 @@ const Signup = ({ onNavigate, onSignin }) => {
                             </div>
                         )}
 
-                        <button type="submit" className={styles.submitButton}>
+                        <Button
+                            type="submit"
+                            variant="primary"
+                            className="w-full justify-center py-3.5 rounded-xl font-medium text-base mt-5"
+                        >
                             {showOtp ? 'Sign Up' : 'Get OTP'}
-                        </button>
+                        </Button>
 
                         <p className={styles.footerText}>
                             Already have an account?

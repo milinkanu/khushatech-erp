@@ -1,0 +1,45 @@
+.pageContainer {
+    width: 100%;
+}
+
+.tableContainer {
+    background-color: #fff;
+    border-radius: 1.5rem;
+    border: 1px solid #f3f4f6;
+    overflow: hidden;
+    box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+/* Custom scrollbar styling if needed, though Tailwind hides it sometimes */
+.customScrollbar::-webkit-scrollbar {
+    height: 8px;
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 4px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+}
+
+/* Badge specific styling if we want to extract it from tailwind utilities */
+.departmentBadge {
+    display: inline-flex;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.75rem;
+    line-height: 1.25rem;
+    font-weight: 600;
+    border-radius: 9999px;
+}

@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import styles from './Profile.module.css';
 import { Eye, EyeOff } from 'lucide-react';
+import Button from '../Button';
 
 const Profile = ({ onLogout }) => {
     const [showPassword, setShowPassword] = useState(false);
@@ -28,12 +29,13 @@ const Profile = ({ onLogout }) => {
                         <p>{profileData.role}</p>
                     </div>
                 </div>
-                <button
-                    className={styles.editButton}
+                <Button
+                    variant={isEditing ? 'outline' : 'outline'}
+                    className={styles.editButton} // Keep original style class for layout
                     onClick={() => setIsEditing(!isEditing)}
                 >
                     {isEditing ? 'Save Profile' : 'Edit Profile'}
-                </button>
+                </Button>
             </div>
 
             <div className={styles.formGrid}>
@@ -93,9 +95,9 @@ const Profile = ({ onLogout }) => {
                 </div>
             </div>
 
-            <button className={styles.logoutButton} onClick={onLogout}>
+            <Button variant="primary" className={styles.logoutButton} onClick={onLogout}>
                 Logout
-            </button>
+            </Button>
         </div>
     );
 };

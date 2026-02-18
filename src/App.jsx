@@ -5,6 +5,7 @@ import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
+import Employees from './components/employees/Employees';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -44,14 +45,17 @@ function App() {
         onYearly={handleYearly}
         onExport={handleExport}
         onProfileClick={() => setCurrentView('profile')}
+        showControls={currentView === 'dashboard'}
       />
 
       <div className="flex flex-col md:flex-row flex-1 w-full">
-        <Sidebar />
+        <Sidebar activeView={currentView} onNavigate={setCurrentView} />
 
-        <main className="flex-1 py-8 px-8">
+        <main className="flex-1 py-8 px-8 min-w-0 overflow-auto">
           {currentView === 'dashboard' ? (
             <SuperAdminDashboard />
+          ) : currentView === 'employees' ? (
+            <Employees />
           ) : (
             <Profile user={user} onLogout={handleLogout} />
           )}

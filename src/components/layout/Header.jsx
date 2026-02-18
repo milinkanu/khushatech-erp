@@ -15,7 +15,8 @@ const Header = ({
     onMonthly = () => console.log('Monthly clicked'),
     onYearly = () => console.log('Yearly clicked'),
     onExport = () => console.log('Export clicked'),
-    onProfileClick
+    onProfileClick,
+    showControls = true
 }) => {
     return (
         <header className="bg-white border-b border-gray-200 sticky top-0 z-50 flex h-[95px] w-full shrink-0">
@@ -43,16 +44,18 @@ const Header = ({
 
                 {/* Right Section: Controls & User Profile */}
                 <div className="flex items-center h-full">
-                    <div className="pr-8">
-                        <HeaderControls
-                            onMonthly={onMonthly}
-                            onYearly={onYearly}
-                            onExport={onExport}
-                        />
-                    </div>
+                    {showControls && (
+                        <div className="pr-8">
+                            <HeaderControls
+                                onMonthly={onMonthly}
+                                onYearly={onYearly}
+                                onExport={onExport}
+                            />
+                        </div>
+                    )}
 
                     {/* Vertical Divider */}
-                    <div className="h-full w-px bg-gray-300 mx-0"></div>
+                    {showControls && <div className="h-full w-px bg-gray-300 mx-0"></div>}
 
                     <div
                         className="hidden md:block pl-8 cursor-pointer hover:opacity-80 transition-opacity"

@@ -8,10 +8,12 @@ const Button = ({
 
     const variants = {
         outline: "border-gray-300 bg-white text-gray-700 hover:bg-gray-50 focus:ring-indigo-500",
+        primary: "bg-gradient-to-r from-[#FF6B00] to-[#FF9F6C] text-white hover:opacity-90 border-transparent",
+        dark: "bg-gray-900 text-white hover:bg-gray-800 focus:ring-gray-900 border-transparent",
         custom: "",
     };
 
-    const selectedVariant = variants[variant] || variants.primary;
+    const selectedVariant = variants[variant] !== undefined ? variants[variant] : variants.outline;
 
     return (
         <button

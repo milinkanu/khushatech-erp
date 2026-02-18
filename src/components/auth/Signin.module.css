@@ -205,23 +205,7 @@
     align-items: center;
 }
 
-.submitButton {
-    background: linear-gradient(90deg, #FF6B00 0%, #FF9F6C 100%);
-    color: white;
-    border: none;
-    padding: 14px;
-    border-radius: 12px;
-    font-size: 16px;
-    font-weight: 500;
-    cursor: pointer;
-    margin-top: 20px;
-    width: 100%;
-    transition: opacity 0.3s;
-}
 
-.submitButton:hover {
-    opacity: 0.9;
-}
 
 .footerText {
     margin-top: 20px;
