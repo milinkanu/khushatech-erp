@@ -3,8 +3,10 @@ import SectionHeading from '../SectionHeading';
 import Button from '../Button';
 import { Plus, Upload, ChevronDown, Pencil, Trash2 } from 'lucide-react';
 import styles from './Employees.module.css';
+import AddEmployeeModal from './AddEmployeeModal';
 
 const Employees = () => {
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
     const employees = [
         {
             id: 1,
@@ -63,25 +65,36 @@ const Employees = () => {
 
     return (
         <div className={styles.pageContainer}>
-            <SectionHeading>Employees</SectionHeading>
+            {/* Header Row: Title & Add Button */}
+            <div className="flex flex-row justify-between items-center mb-6">
+                <SectionHeading className="!mb-0 text-3xl font-bold text-gray-900">Employees</SectionHeading>
 
-            <div className="flex flex-col sm:flex-row justify-between items-center mb-6 mt-4 gap-4">
-                <Button variant="primary" className="gap-2 px-6 py-2.5 rounded-xl shadow-none hover:shadow-lg transition-shadow">
-                    <Plus size={20} />
+                <Button
+                    variant="primary"
+                    className="gap-2 px-4 py-2.5 rounded-xl shadow-lg shadow-orange-500/20 hover:shadow-orange-500/30 transition-all text-sm font-medium"
+                    onClick={() => setIsModalOpen(true)}
+                >
+                    <Plus size={18} />
                     Add Employee
                 </Button>
+            </div>
 
-                <div className="flex gap-3 w-full sm:w-auto overflow-x-auto pb-2 sm:pb-0">
-                    <Button variant="outline" className="gap-2 font-normal rounded-xl">
-                        Monthly <ChevronDown size={16} className="text-gray-400" />
-                    </Button>
-                    <Button variant="outline" className="gap-2 font-normal rounded-xl">
-                        Yearly <ChevronDown size={16} className="text-gray-400" />
-                    </Button>
-                    <Button variant="dark" className="gap-2 rounded-xl px-6">
-                        <Upload size={16} /> Export
-                    </Button>
-                </div>
+            {/* Filters Row */}
+            <div className="flex gap-3 mb-6 overflow-x-auto pb-2 -mx-4 px-4 sm:mx-0 sm:px-0 scrollbar-hide">
+                <Button variant="outline" className="gap-2 font-normal rounded-xl shrink-0 border-gray-200">
+                    Monthly <ChevronDown size={16} className="text-gray-400" />
+                </Button>
+                <Button variant="outline" className="gap-2 font-normal rounded-xl shrink-0 border-gray-200">
+                    Yearly <ChevronDown size={16} className="text-gray-400" />
+                </Button>
+                <Button variant="dark" className="gap-2 rounded-xl px-6 shrink-0 bg-[#1A1A1A] text-white border-none hover:bg-black">
+                    <Upload size={16} /> Export
+                </Button>
+            </div>
+
+            {/* Table Section */}
+            <div className="mb-4">
+                <h3 className="text-xl font-bold text-gray-500 mb-4">Employees</h3>
             </div>
 
             <div className={styles.tableContainer}>
@@ -163,6 +176,10 @@ const Employees = () => {
                     </table>
                 </div>
             </div>
+
+            {/* Add Employee Modal */}
+            <AddEmployeeModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
         </div>
     );
 };
