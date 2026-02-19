@@ -2,7 +2,7 @@ import React from 'react';
 
 const StatCard = ({ label, count, icon, iconBg }) => {
     return (
-        <div className="bg-white border border-gray-200 rounded-[2.5rem] p-6 flex flex-row items-center gap-4 hover:border-gray-300 transition-colors duration-300 h-full">
+        <div className="bg-white border border-gray-200 rounded-xl p-6 flex flex-row items-center gap-4 hover:border-gray-300 transition-colors duration-300 h-full">
             <div className={`p-4 rounded-full ${iconBg} shrink-0`}>
                 {// Extract the color class from the icon's props and apply simpler sizing
                     React.cloneElement(icon, {
