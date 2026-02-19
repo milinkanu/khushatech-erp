@@ -2,6 +2,7 @@ import { useState } from 'react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
+import EmployeeDashboard from './components/employee-dashboard/EmployeeDashboard';
 import Employees from './components/employees/Employees';
 import Clients from './components/clients/Clients';
 import ClientDetails from './components/clients/ClientDetails';
@@ -15,7 +16,7 @@ function App() {
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details'
   const [selectedClient, setSelectedClient] = useState(null);
 
-  const [user] = useState({
+  const [user, setUser] = useState({
     name: "Khushboo Bharati",
     role: "CEO & Founder",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -36,6 +37,14 @@ function App() {
     setCurrentView('client-details');
   };
 
+  const toggleRole = () => {
+    setUser(prev => ({
+      ...prev,
+      role: prev.role === 'CEO & Founder' ? 'Employee' : 'CEO & Founder',
+      name: prev.role === 'CEO & Founder' ? 'Employee Account' : 'Khushboo Bharati'
+    }));
+  };
+
   if (!isAuthenticated) {
     if (currentAuthView === 'signup') {
       return <Signup onNavigate={setCurrentAuthView} onSignin={() => setIsAuthenticated(true)} />;
@@ -47,6 +56,7 @@ function App() {
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">
       <Header
         user={user}
+        welcomeMessage={`Welcome ${user.name}!`}
         onMonthly={handleMonthly}
         onYearly={handleYearly}
         onExport={handleExport}
@@ -59,7 +69,17 @@ function App() {
 
         <main className="flex-1 py-8 px-8 min-w-0 overflow-auto">
           {currentView === 'dashboard' ? (
-            <SuperAdminDashboard />
+            <>
+              <div className="mb-6 flex justify-end">
+                <button
+                  onClick={toggleRole}
+                  className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition-colors"
+                >
+                  Switch to {user.role === 'CEO & Founder' ? 'Employee' : 'Admin'} Dashboard
+                </button>
+              </div>
+              {user.role === 'CEO & Founder' ? <SuperAdminDashboard /> : <EmployeeDashboard />}
+            </>
           ) : currentView === 'employees' ? (
             <Employees />
           ) : currentView === 'clients' ? (
