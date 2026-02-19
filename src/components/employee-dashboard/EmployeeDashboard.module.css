@@ -1,0 +1,28 @@
+.dashboardContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+.statSection {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.sectionTitle {
+    font-size: 16px;
+    color: #6b7280;
+    font-weight: 500;
+    margin-bottom: 8px;
+}
+
+.cardGrid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+}
+
+.fullWidth {
+    width: 100%;
+}

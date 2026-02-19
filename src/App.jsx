@@ -2,12 +2,12 @@ import { useState } from 'react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
-import Signin from './components/auth/Signin';
-import Signup from './components/auth/Signup';
-import Profile from './components/profile/Profile';
 import Employees from './components/employees/Employees';
 import Clients from './components/clients/Clients';
 import ClientDetails from './components/clients/ClientDetails';
+import Signin from './components/auth/Signin';
+import Signup from './components/auth/Signup';
+import Profile from './components/profile/Profile';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
@@ -15,7 +15,7 @@ function App() {
   const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details'
   const [selectedClient, setSelectedClient] = useState(null);
 
-  const [user, setUser] = useState({
+  const [user] = useState({
     name: "Khushboo Bharati",
     role: "CEO & Founder",
     avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
@@ -42,8 +42,6 @@ function App() {
     }
     return <Signin onSignin={() => setIsAuthenticated(true)} onNavigate={setCurrentAuthView} />;
   }
-
-
 
   return (
     <div className="min-h-screen bg-gray-50 flex flex-col font-sans">

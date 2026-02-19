@@ -1,0 +1,97 @@
+.tableContainer {
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    margin-top: 24px;
+}
+
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 16px 24px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.title {
+    font-size: 18px;
+    font-weight: 600;
+    color: #111827;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    text-align: left;
+}
+
+.table th {
+    background-color: #f9fafb;
+    color: #6b7280;
+    font-weight: 600;
+    font-size: 14px;
+    padding: 12px 24px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.table td {
+    padding: 16px 24px;
+    font-size: 14px;
+    color: #111827;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.table tr:last-child td {
+    border-bottom: none;
+}
+
+.projectName {
+    font-weight: 500;
+    color: #111827;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.statusWrapper {
+    display: inline-flex;
+}
+
+.statusCompleted {
+    background-color: #d1fae5;
+    color: #065f46;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.statusRunning {
+    background-color: #f3f4f6;
+    color: #374151;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    border: 1px solid #e5e7eb;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.statusOverdue {
+    background-color: #fee2e2;
+    color: #991b1b;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    font-size: 12px;
+    font-weight: 500;
+}
+
+.overdate {
+    color: #ef4444;
+    font-weight: 500;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
