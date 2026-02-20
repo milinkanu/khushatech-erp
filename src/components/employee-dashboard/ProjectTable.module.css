@@ -141,12 +141,7 @@
     }
 
     .tableWrapper {
-        overflow-x: hidden;
-    }
-
-    .table th:nth-child(n+3),
-    .table td:nth-child(n+3) {
-        display: none;
+        overflow-x: auto;
     }
 
     .table th {
@@ -157,12 +152,12 @@
         padding: 16px 20px;
         border-bottom: 1px solid #f0f0f0;
         border-top: 1px solid #f0f0f0;
+        white-space: nowrap;
     }
 
     .table td {
-        white-space: normal;
+        white-space: nowrap;
         padding: 16px 20px;
-        width: 50%;
         color: #6b7280;
         font-size: 14px;
         border-bottom: 1px solid #f0f0f0;
