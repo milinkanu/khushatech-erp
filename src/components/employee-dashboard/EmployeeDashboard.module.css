@@ -4,6 +4,19 @@
     gap: 24px;
 }
 
+.topRow {
+    display: flex;
+    gap: 24px;
+    align-items: flex-start;
+}
+
+.divider {
+    width: 1px;
+    background-color: #e5e7eb;
+    margin: 0 8px;
+    align-self: stretch;
+}
+
 .statSection {
     display: flex;
     flex-direction: column;
@@ -25,4 +38,27 @@
 
 .fullWidth {
     width: 100%;
+}
+
+@media (max-width: 768px) {
+    .dashboardContainer {
+        padding: 0 16px;
+    }
+
+    .topRow {
+        flex-direction: column;
+        gap: 24px;
+        align-items: stretch;
+    }
+
+    .divider {
+        display: none;
+        /* Hide the divider on mobile as the layout completely breaks apart */
+    }
+
+    .cardGrid {
+        flex-direction: row;
+        flex-wrap: wrap;
+        gap: 16px;
+    }
 }

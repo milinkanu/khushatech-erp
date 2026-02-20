@@ -2,7 +2,7 @@
 import React from 'react';
 import styles from './ProjectTable.module.css';
 
-const ProjectTable = ({ projects = [] }) => {
+const ProjectTable = ({ projects = [], onProjectClick }) => {
     return (
         <div className={styles.tableContainer}>
             <div className={styles.header}>
@@ -29,7 +29,12 @@ const ProjectTable = ({ projects = [] }) => {
                         {projects.map((project, index) => (
                             <tr key={index}>
                                 <td>
-                                    <span className={styles.projectName}>{project.name}</span>
+                                    <span
+                                        className={styles.projectName}
+                                        onClick={() => onProjectClick && onProjectClick(project)}
+                                    >
+                                        {project.name}
+                                    </span>
                                 </td>
                                 <td>{project.assignedDate}</td>
                                 <td>{project.updatedAt}</td>
@@ -52,7 +57,7 @@ const ProjectTable = ({ projects = [] }) => {
                                                     : styles.statusOverdue
                                         }
                                     >
-                                        {project.status} {project.status === 'Completed' ? '✓' : project.status === 'Running' ? '⟳' : ''}
+                                        <span className={styles.statusDot}>•</span> {project.status}
                                     </span>
                                 </td>
                             </tr>

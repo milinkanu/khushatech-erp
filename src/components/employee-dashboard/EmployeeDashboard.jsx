@@ -5,7 +5,7 @@ import ProjectTable from './ProjectTable';
 import styles from './EmployeeDashboard.module.css';
 import { CheckCircle, Clock, Calendar, AlertTriangle } from 'lucide-react';
 
-const EmployeeDashboard = () => {
+const EmployeeDashboard = ({ onProjectClick }) => {
     const projects = [
         {
             name: 'E-Commerce Project',
@@ -40,33 +40,37 @@ const EmployeeDashboard = () => {
 
     return (
         <div className={styles.dashboardContainer}>
-            <div className={styles.statSection}>
-                <h2 className={styles.sectionTitle}>Projects</h2>
-                <div className={styles.cardGrid}>
-                    <StatCard
-                        icon={<CheckCircle size={24} />}
-                        value="04"
-                        label="Completed"
-                        type="success"
-                    />
-                    <StatCard
-                        icon={<Clock size={24} />}
-                        value="02"
-                        label="Running"
-                        type="warning"
-                    />
+            <div className={styles.topRow}>
+                <div className={styles.statSection}>
+                    <h2 className={styles.sectionTitle}>Projects</h2>
+                    <div className={styles.cardGrid}>
+                        <StatCard
+                            icon={<CheckCircle size={24} />}
+                            value="04"
+                            label="Completed"
+                            type="success"
+                        />
+                        <StatCard
+                            icon={<Clock size={24} />}
+                            value="02"
+                            label="Running"
+                            type="warning"
+                        />
+                    </div>
                 </div>
-            </div>
 
-            <div className={styles.statSection}>
-                <h2 className={styles.sectionTitle}>Leave</h2>
-                <div className={styles.cardGrid}>
-                    <StatCard
-                        icon={<Calendar size={24} />}
-                        value="06"
-                        label="2 Casual • 4 Sick"
-                        type="danger"
-                    />
+                <div className={styles.divider}></div>
+
+                <div className={styles.statSection}>
+                    <h2 className={styles.sectionTitle}>Leave</h2>
+                    <div className={styles.cardGrid}>
+                        <StatCard
+                            icon={<Calendar size={24} />}
+                            value="06"
+                            label="2 Casual • 4 Sick"
+                            type="danger"
+                        />
+                    </div>
                 </div>
             </div>
 
@@ -96,7 +100,7 @@ const EmployeeDashboard = () => {
             </div>
 
             <div className={styles.statSection}>
-                <ProjectTable projects={projects} />
+                <ProjectTable projects={projects} onProjectClick={onProjectClick} />
             </div>
         </div>
     );

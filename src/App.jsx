@@ -6,6 +6,8 @@ import EmployeeDashboard from './components/employee-dashboard/EmployeeDashboard
 import Employees from './components/employees/Employees';
 import Clients from './components/clients/Clients';
 import ClientDetails from './components/clients/ClientDetails';
+import Projects from './components/projects/Projects';
+import ProjectDetails from './components/projects/ProjectDetails';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
@@ -13,8 +15,9 @@ import Profile from './components/profile/Profile';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details'
   const [selectedClient, setSelectedClient] = useState(null);
+  const [selectedProject, setSelectedProject] = useState(null);
 
   const [user, setUser] = useState({
     name: "Khushboo Bharati",
@@ -35,6 +38,11 @@ function App() {
   const handleClientClick = (client) => {
     setSelectedClient(client);
     setCurrentView('client-details');
+  };
+
+  const handleProjectClick = (project) => {
+    setSelectedProject(project);
+    setCurrentView('project-details');
   };
 
   const toggleRole = () => {
@@ -65,9 +73,16 @@ function App() {
       />
 
       <div className="flex flex-col md:flex-row flex-1 w-full">
-        <Sidebar activeView={currentView === 'client-details' ? 'clients' : currentView} onNavigate={setCurrentView} />
+        <Sidebar
+          activeView={
+            currentView === 'client-details' ? 'clients' :
+              currentView === 'project-details' ? 'projects' :
+                currentView
+          }
+          onNavigate={setCurrentView}
+        />
 
-        <main className="flex-1 py-8 px-8 min-w-0 overflow-auto">
+        <main className="flex-1 py-4 px-4 md:py-8 md:px-8 min-w-0 overflow-auto">
           {currentView === 'dashboard' ? (
             <>
               <div className="mb-6 flex justify-end">
@@ -78,14 +93,18 @@ function App() {
                   Switch to {user.role === 'CEO & Founder' ? 'Employee' : 'Admin'} Dashboard
                 </button>
               </div>
-              {user.role === 'CEO & Founder' ? <SuperAdminDashboard /> : <EmployeeDashboard />}
+              {user.role === 'CEO & Founder' ? <SuperAdminDashboard /> : <EmployeeDashboard onProjectClick={handleProjectClick} />}
             </>
           ) : currentView === 'employees' ? (
             <Employees />
           ) : currentView === 'clients' ? (
             <Clients onClientClick={handleClientClick} />
+          ) : currentView === 'projects' ? (
+            <Projects onProjectClick={handleProjectClick} />
           ) : currentView === 'client-details' ? (
             <ClientDetails client={selectedClient} />
+          ) : currentView === 'project-details' ? (
+            <ProjectDetails project={selectedProject} />
           ) : (
             <Profile user={user} onLogout={handleLogout} />
           )}
