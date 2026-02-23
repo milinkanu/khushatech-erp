@@ -151,6 +151,7 @@
     background-color: rgba(249, 250, 251, 0.5);
 }
 
+
 .tableHeader th {
     padding: 1rem 1rem;
     font-size: 0.875rem;
@@ -187,32 +188,9 @@
     border-right: none;
 }
 
-.avatar {
-    height: 2.5rem;
-    width: 2.5rem;
-    border-radius: 9999px;
-    object-fit: cover;
-}
-
 .textCell {
     font-size: 0.875rem;
     color: #6b7280;
-}
-
-.fontMedium {
-    font-weight: 500;
-    color: #374151;
-}
-
-.actionCell {
-    padding: 0.75rem 1rem;
-    white-space: nowrap;
-    text-align: center;
-    border-right: 1px solid #e5e7eb;
-}
-
-.actionCell:last-child {
-    border-right: none;
 }
 
 .badgeHigh {

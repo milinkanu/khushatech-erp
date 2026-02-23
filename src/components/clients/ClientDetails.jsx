@@ -3,48 +3,55 @@ import React, { useState } from 'react';
 import { Plus, Upload, ChevronDown } from 'lucide-react';
 import Button from '../Button';
 import AddProjectModal from './AddProjectModal';
+import ViewProjectModal from './ViewProjectModal';
 import styles from './ClientDetails.module.css';
 
 const ClientDetails = ({ client }) => {
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
 
-    // Mock employees data as per screenshot
-    const employees = [
+    // Mock projects data as per screenshot
+    const projects = [
         {
-            id: 1,
-            name: 'Kashyap Koyani',
-            role: 'Project Manager',
-            phone: '+91-9876543210',
-            email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            avatar: 'https://images.unsplash.com/photo-1599566150163-29194dcaad36?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            id: '#01Project',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            id: 2,
-            name: 'Mohammad Faraz',
-            role: 'Product Designer',
-            phone: '+91-9876543210',
-            email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            id: '#02Project',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            id: 3,
-            name: 'Mohammad Aaves',
-            role: 'Backend Developer',
-            phone: '+91-9876543210',
-            email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            avatar: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            id: '#03Project',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            id: 4,
-            name: 'Sangmesh',
-            role: 'Backend Developer',
-            phone: '+91-9876543210',
-            email: 'employeename@gmail.com',
-            salary: '₹ 25,000',
-            avatar: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?ixlib=rb-1.2.1&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80',
+            id: '#04Project',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         }
     ];
 
@@ -80,10 +87,7 @@ const ClientDetails = ({ client }) => {
 
                 <div className={styles.filtersGroup}>
                     <button className={styles.filterButton}>
-                        Monthly <ChevronDown size={16} className={styles.chevronIcon} />
-                    </button>
-                    <button className={styles.filterButton}>
-                        Yearly <ChevronDown size={16} className={styles.chevronIcon} />
+                        Date <ChevronDown size={16} className={styles.chevronIcon} />
                     </button>
                     <button className={styles.exportButton}>
                         <Upload size={16} /> Export
@@ -94,38 +98,52 @@ const ClientDetails = ({ client }) => {
             {/* Table Section */}
             <div className={styles.tableContainer}>
                 <div className={`${styles.tableWrapper} ${styles.customScrollbar}`}>
-                    <table>
+                    <table style={{ minWidth: '1000px' }}>
                         <thead className={styles.tableHeader}>
                             <tr>
-                                <th>Name</th>
-                                <th>Role</th>
-                                <th>Phone</th>
-                                <th>Email</th>
-                                <th>Salary</th>
+                                <th>Project ID</th>
+                                <th>Project Name</th>
+                                <th>Priority</th>
+                                <th>Project Type</th>
+                                <th>Start Date</th>
+                                <th>Deadline</th>
+                                <th>Total Cost</th>
+                                <th>Advanced Received</th>
                             </tr>
                         </thead>
                         <tbody className={styles.tableBody}>
-                            {employees.map((employee) => (
-                                <tr key={employee.id}>
+                            {projects.map((project, index) => (
+                                <tr
+                                    key={index}
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => {
+                                        setSelectedProject(project);
+                                        setIsViewModalOpen(true);
+                                    }}
+                                >
                                     <td className={styles.tableCell}>
-                                        <div className="flex items-center gap-3">
-                                            <div className="shrink-0 h-10 w-10">
-                                                <img className={styles.avatar} src={employee.avatar} alt="" />
-                                            </div>
-                                            <div className="text-sm font-medium text-gray-700">{employee.name}</div>
-                                        </div>
+                                        <div className={styles.textCell}>{project.id}</div>
                                     </td>
                                     <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.role}</div>
+                                        <div className={styles.textCell}>{project.name}</div>
                                     </td>
                                     <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.phone}</div>
+                                        <span className={styles.badgeHigh}>{project.priority}</span>
                                     </td>
                                     <td className={styles.tableCell}>
-                                        <div className={styles.textCell}>{employee.email}</div>
+                                        <div className={styles.textCell}>{project.type}</div>
                                     </td>
                                     <td className={styles.tableCell}>
-                                        <div className="text-sm font-medium text-gray-700">{employee.salary}</div>
+                                        <div className={styles.textCell}>{project.startDate}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.deadline}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.totalCost}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.advancedReceived}</div>
                                     </td>
                                 </tr>
                             ))}
@@ -136,6 +154,13 @@ const ClientDetails = ({ client }) => {
 
             {/* Add Project Modal */}
             <AddProjectModal isOpen={isModalOpen} onClose={() => setIsModalOpen(false)} />
+
+            {/* View Project Slider */}
+            <ViewProjectModal
+                isOpen={isViewModalOpen}
+                onClose={() => setIsViewModalOpen(false)}
+                project={selectedProject}
+            />
 
         </div>
     );

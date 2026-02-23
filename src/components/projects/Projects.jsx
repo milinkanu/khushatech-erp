@@ -1,43 +1,177 @@
-import React from 'react';
-import ProjectTable from '../employee-dashboard/ProjectTable';
+import React, { useState } from 'react';
+import { Plus, Upload, ChevronDown } from 'lucide-react';
+import Button from '../Button';
+import AddProjectModal from '../clients/AddProjectModal';
+import ViewProjectModal from '../clients/ViewProjectModal';
+import styles from './Projects.module.css';
 
 const Projects = ({ onProjectClick }) => {
-    const projects = [
+    const [isAddModalOpen, setIsAddModalOpen] = useState(false);
+    const [isViewModalOpen, setIsViewModalOpen] = useState(false);
+    const [selectedProject, setSelectedProject] = useState(null);
+
+    // Mock projects data as per screenshot
+    const allProjects = [
         {
-            name: 'E-Commerce Project',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Completed',
+            id: '#01Project',
+            clientName: 'Rahul Mishra',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            name: 'CRM Mobile App',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Running',
+            id: '#02Project',
+            clientName: 'Rahul Mishra',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            name: 'Admin Panel',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Running',
+            id: '#03Project',
+            clientName: 'Rahul Mishra',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
         },
         {
-            name: 'Food Application Project',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            isOverdue: true,
-            status: 'Running',
-        },
+            id: '#04Project',
+            clientName: 'Rahul Mishra',
+            name: 'E Commerce Platform',
+            priority: 'High',
+            type: 'Website',
+            startDate: '01/02/2026',
+            deadline: '01/02/2026',
+            totalCost: '₹ 2,50,000',
+            advancedReceived: '₹ 1,25,000',
+        }
     ];
 
     return (
-        <div className="flex flex-col gap-6">
-            <h1 className="text-2xl font-bold text-gray-900">All Projects</h1>
-            <ProjectTable projects={projects} onProjectClick={onProjectClick} />
+        <div className={styles.pageContainer}>
+            {/* Header Row: Title & Add Button */}
+            <div className={styles.headerRow}>
+                <h2 className={styles.sectionHeading}>All Projects</h2>
+
+                <Button
+                    variant="primary"
+                    className={styles.addProjectButtonMobile}
+                    onClick={() => setIsAddModalOpen(true)}
+                >
+                    <Plus size={18} />
+                    Add Project
+                </Button>
+            </div>
+
+            {/* Controls Row: Add Button (Left) & Filters (Right) */}
+            <div className={styles.controlsRow}>
+                <Button
+                    variant="primary"
+                    className={styles.addProjectButtonDesktop}
+                    onClick={() => setIsAddModalOpen(true)}
+                >
+                    <Plus size={18} />
+                    Add Project
+                </Button>
+
+                <div className={styles.filtersGroup}>
+                    <button className={styles.filterButton}>
+                        Rahul Mishra <ChevronDown size={16} className={styles.chevronIcon} />
+                    </button>
+                    <button className={styles.filterButton}>
+                        Date <ChevronDown size={16} className={styles.chevronIcon} />
+                    </button>
+                    <button className={styles.exportButton}>
+                        <Upload size={16} /> Export
+                    </button>
+                </div>
+            </div>
+
+            {/* Table Section */}
+            <div className={styles.tableContainer}>
+                <div className={`${styles.tableWrapper} ${styles.customScrollbar}`}>
+                    <table style={{ minWidth: '1100px' }}>
+                        <thead className={styles.tableHeader}>
+                            <tr>
+                                <th>Project ID</th>
+                                <th>Client's Name</th>
+                                <th>Project Name</th>
+                                <th>Priority</th>
+                                <th>Project Type</th>
+                                <th>Start Date</th>
+                                <th>Deadline</th>
+                                <th>Total Cost</th>
+                                <th>Advanced Received</th>
+                            </tr>
+                        </thead>
+                        <tbody className={styles.tableBody}>
+                            {allProjects.map((project, index) => (
+                                <tr
+                                    key={index}
+                                    style={{ cursor: 'pointer' }}
+                                    onClick={() => {
+                                        setSelectedProject(project);
+                                        setIsViewModalOpen(true);
+                                    }}
+                                >
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.id}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.clientName}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.name}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <span className={styles.badgeHigh}>{project.priority}</span>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.type}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.startDate}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.deadline}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.totalCost}</div>
+                                    </td>
+                                    <td className={styles.tableCell}>
+                                        <div className={styles.textCell}>{project.advancedReceived}</div>
+                                    </td>
+                                </tr>
+                            ))}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+
+            {/* Modals */}
+            <AddProjectModal
+                isOpen={isAddModalOpen}
+                onClose={() => setIsAddModalOpen(false)}
+                showClientSelect={true}
+            />
+
+            <ViewProjectModal
+                isOpen={isViewModalOpen}
+                onClose={() => setIsViewModalOpen(false)}
+                project={selectedProject}
+                showClientSelect={true}
+            />
         </div>
     );
 };

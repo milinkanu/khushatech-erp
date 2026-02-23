@@ -3,7 +3,7 @@ import React from 'react';
 import { X, Plus } from 'lucide-react';
 import styles from './AddProjectModal.module.css';
 
-const AddProjectModal = ({ isOpen, onClose }) => {
+const AddProjectModal = ({ isOpen, onClose, showClientSelect }) => {
     if (!isOpen) return null;
 
     return (
@@ -48,6 +48,18 @@ const AddProjectModal = ({ isOpen, onClose }) => {
                         </div>
                     </div>
 
+                    {showClientSelect && (
+                        <div>
+                            <h3 className={styles.sectionHeading}>Select Client</h3>
+                            <div className={`${styles.formGroup} ${styles.fullWidth}`}>
+                                <label className={styles.label}>Clients</label>
+                                <select className={styles.select}>
+                                    <option>Rahul Mishra</option>
+                                </select>
+                            </div>
+                        </div>
+                    )}
+
                     <div>
                         <h3 className={styles.sectionHeading}>Timeline</h3>
                         <div className={styles.formGrid}>
@@ -84,7 +96,7 @@ const AddProjectModal = ({ isOpen, onClose }) => {
                 <div className={styles.modalFooter}>
                     <button className={styles.submitButton}>
                         <Plus size={18} />
-                        Add Employee
+                        Add Project
                     </button>
                 </div>
             </div>
