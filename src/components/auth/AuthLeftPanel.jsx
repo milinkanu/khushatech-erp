@@ -1,23 +1,28 @@
 import React, { useState, useEffect } from 'react';
 import styles from './Signin.module.css';
 import { ArrowLeft, ArrowRight } from 'lucide-react';
+import authBg from '../../assets/images/auth-bg.jpg';
 
 const slides = [
     {
         title: "You can easily",
-        content: <>Manage Projects,<br />Access and track your<br />assigned projects easily.</>
+        highlight: "Manage Projects,",
+        content: <>Access and track your<br />assigned projects easily.</>
     },
     {
         title: "You can easily",
-        content: <>Update Tasks,<br />Change task status<br />and stay on schedule.</>
+        highlight: "Update Tasks,",
+        content: <>Change task status<br />and stay on schedule.</>
     },
     {
         title: "You can easily",
-        content: <>Track Attendance,<br />Clock in, manage breaks,<br />and view working hours.</>
+        highlight: "Track Attendance,",
+        content: <>Clock in, manage breaks,<br />and view working hours.</>
     },
     {
         title: "You can easily",
-        content: <>Apply Leave,<br />Submit and monitor<br />leave requests quickly.</>
+        highlight: "Apply Leave,",
+        content: <>Submit and monitor<br />leave requests quickly.</>
     }
 ];
 
@@ -44,23 +49,28 @@ const AuthLeftPanel = () => {
     const currentSlide = slides[currentIndex];
 
     return (
-        <div className={styles.leftPanel}>
+        <div className={styles.leftPanel} style={{ backgroundImage: `url(${authBg})` }}>
             <div className={styles.brandBadge}>Khushatech ERP System</div>
 
-            <div className={styles.arrowsContainer}>
-                <button className={styles.arrowButton} onClick={handlePrev} type="button">
-                    <ArrowLeft size={20} />
-                </button>
-                <button className={styles.arrowButton} onClick={handleNext} type="button">
-                    <ArrowRight size={20} />
-                </button>
-            </div>
+            <div className={styles.bottomContent}>
+                <div className={styles.arrowsContainer}>
+                    <button className={styles.arrowButton} onClick={handlePrev} type="button">
+                        <ArrowLeft size={24} strokeWidth={1} />
+                    </button>
+                    <button className={styles.arrowButton} onClick={handleNext} type="button">
+                        <ArrowRight size={24} strokeWidth={1} />
+                    </button>
+                </div>
 
-            <div className={styles.infoCard}>
-                <p className={styles.infoTitle}>{currentSlide.title}</p>
-                <h2 className={styles.infoHeading}>
-                    {currentSlide.content}
-                </h2>
+                <div className={styles.infoCard}>
+                    <p className={styles.infoTitle}>{currentSlide.title}</p>
+                    <h2 className={styles.infoHighlight}>
+                        {currentSlide.highlight}
+                    </h2>
+                    <h3 className={styles.infoHeading}>
+                        {currentSlide.content}
+                    </h3>
+                </div>
             </div>
         </div>
     );
