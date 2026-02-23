@@ -8,6 +8,7 @@ import Clients from './components/clients/Clients';
 import ClientDetails from './components/clients/ClientDetails';
 import Projects from './components/projects/Projects';
 import ProjectDetails from './components/projects/ProjectDetails';
+import Leave from './components/leave/Leave';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
@@ -15,7 +16,7 @@ import Profile from './components/profile/Profile';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details', 'leave'
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -101,6 +102,8 @@ function App() {
             <Clients onClientClick={handleClientClick} />
           ) : currentView === 'projects' ? (
             <Projects onProjectClick={handleProjectClick} />
+          ) : currentView === 'leave' ? (
+            <Leave />
           ) : currentView === 'client-details' ? (
             <ClientDetails client={selectedClient} />
           ) : currentView === 'project-details' ? (
