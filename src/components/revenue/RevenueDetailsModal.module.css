@@ -1,0 +1,204 @@
+.sidebarOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5);
+    display: flex;
+    justify-content: flex-end;
+    z-index: 1000;
+}
+
+.sidebarContent {
+    background: #ffffff;
+    width: 600px;
+    height: 100%;
+    overflow-y: auto;
+    position: relative;
+    box-shadow: -10px 0 25px -5px rgba(0, 0, 0, 0.1);
+    animation: slideIn 0.3s ease-out forwards;
+    display: flex;
+    flex-direction: column;
+}
+
+@keyframes slideIn {
+    from {
+        transform: translateX(100%);
+    }
+
+    to {
+        transform: translateX(0);
+    }
+}
+
+.modalHeader {
+    padding: 1.5rem 2rem;
+    border-bottom: 1px solid #f3f4f6;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    background: #f9fafb;
+    z-index: 10;
+}
+
+.modalTitle {
+    font-size: 1.25rem;
+    font-weight: 600;
+    color: #111827;
+    margin: 0;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111827;
+    transition: background-color 0.2s;
+    padding: 0.25rem;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    background-color: #e5e7eb;
+}
+
+.modalBody {
+    padding: 2rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.tableContainer {
+    background-color: #fff;
+    border-radius: 0.5rem;
+    border: 1px solid #e5e7eb;
+    overflow: hidden;
+}
+
+.tableWrapper {
+    overflow-x: auto;
+    max-width: 100%;
+}
+
+.customScrollbar::-webkit-scrollbar {
+    height: 8px;
+}
+
+.customScrollbar::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb {
+    background: #e5e7eb;
+    border-radius: 4px;
+}
+
+.customScrollbar::-webkit-scrollbar-thumb:hover {
+    background: #d1d5db;
+}
+
+.tableContainer table {
+    min-width: 100%;
+    border-collapse: collapse;
+}
+
+.tableHeader {
+    background-color: #f9fafb;
+}
+
+.tableHeader th {
+    padding: 1rem;
+    font-size: 0.875rem;
+    font-weight: 600;
+    color: #374151;
+    text-align: left;
+    border-right: 1px solid #e5e7eb;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tableHeader th:last-child {
+    border-right: none;
+}
+
+.tableBodyContainer tr:not(:last-child) {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tableCell {
+    padding: 1rem;
+    white-space: nowrap;
+    border-right: 1px solid #e5e7eb;
+}
+
+.tableCell:last-child {
+    border-right: none;
+}
+
+.avatar {
+    height: 2.5rem;
+    width: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.textCell {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+/* Status Pills */
+.statusPill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 9999px;
+    font-size: 0.875rem;
+    font-weight: 500;
+    border: 1px solid;
+    min-width: 90px;
+    justify-content: space-between;
+}
+
+.statusPaid {
+    color: #10b981;
+    border-color: #10b981;
+    background-color: transparent;
+}
+
+.statusPartial {
+    color: #f97316;
+    border-color: #f97316;
+    background-color: transparent;
+}
+
+/* Scrollbar */
+.sidebarContent::-webkit-scrollbar {
+    width: 8px;
+}
+
+.sidebarContent::-webkit-scrollbar-track {
+    background: #f1f1f1;
+}
+
+.sidebarContent::-webkit-scrollbar-thumb {
+    background: #d1d5db;
+    border-radius: 4px;
+}
+
+.sidebarContent::-webkit-scrollbar-thumb:hover {
+    background: #9ca3af;
+}
+
+@media (max-width: 640px) {
+    .sidebarContent {
+        width: 100%;
+    }
+}

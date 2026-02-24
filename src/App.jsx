@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import Header from './components/layout/Header';
 import Sidebar from './components/layout/Sidebar';
 import SuperAdminDashboard from './components/dashboard/SuperAdminDashboard';
@@ -12,11 +12,12 @@ import Leave from './components/leave/Leave';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
+import Revenue from './components/revenue/Revenue';
 
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details', 'leave'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details', 'leave', 'revenue'
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -108,6 +109,8 @@ function App() {
             <ClientDetails client={selectedClient} />
           ) : currentView === 'project-details' ? (
             <ProjectDetails project={selectedProject} />
+          ) : currentView === 'revenue' ? (
+            <Revenue />
           ) : (
             <Profile user={user} onLogout={handleLogout} />
           )}
