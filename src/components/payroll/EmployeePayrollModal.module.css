@@ -1,0 +1,149 @@
+.modalOverlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background-color: rgba(0, 0, 0, 0.4);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+}
+
+.modalContent {
+    background-color: white;
+    width: 100%;
+    max-width: 700px;
+    height: 100%;
+    max-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+@media (min-width: 768px) {
+    .modalContent {
+        height: auto;
+        max-height: 90vh;
+        border-radius: 1rem;
+        margin: 2rem;
+        overflow: hidden;
+    }
+}
+
+.modalHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem;
+    background-color: #fafafa;
+    border-bottom: 1px solid #f3f4f6;
+}
+
+.closeButton {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: #111827;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.closeButton:hover {
+    color: #4b5563;
+}
+
+.table {
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid #e5e7eb;
+    border-radius: 0.75rem;
+    overflow: hidden;
+    min-width: 450px;
+}
+
+@media (max-width: 767px) {
+    .table {
+        min-width: 100%;
+    }
+}
+
+.tableContainer {
+    padding: 1rem;
+    overflow-x: auto;
+    overflow-y: auto;
+    flex: 1;
+}
+
+@media (min-width: 768px) {
+    .tableContainer {
+        padding: 1.5rem;
+    }
+}
+
+.tableHeader th {
+    background-color: #fafafa;
+    padding: 0.75rem 0.5rem;
+    text-align: left;
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #111827;
+    border-bottom: 1px solid #e5e7eb;
+    border-right: 1px solid #e5e7eb;
+    white-space: nowrap;
+}
+
+@media (min-width: 768px) {
+    .tableHeader th {
+        padding: 1rem;
+        font-size: 0.875rem;
+    }
+}
+
+.tableHeader th:last-child {
+    border-right: none;
+}
+
+.tableRow {
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.tableRow:last-child {
+    border-bottom: none;
+}
+
+.tableCell {
+    padding: 0.75rem 0.5rem;
+    border-right: 1px solid #e5e7eb;
+}
+
+@media (min-width: 768px) {
+    .tableCell {
+        padding: 1rem;
+    }
+}
+
+.tableCell:last-child {
+    border-right: none;
+}
+
+.avatar {
+    width: 2.5rem;
+    height: 2.5rem;
+    border-radius: 9999px;
+    object-fit: cover;
+}
+
+.paidBadge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0.375rem 0.75rem;
+    border-radius: 0.5rem;
+    border: 1px solid #10b981;
+    color: #059669;
+    font-size: 0.875rem;
+    font-weight: 500;
+    min-width: 80px;
+}
