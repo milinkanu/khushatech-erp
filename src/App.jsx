@@ -9,6 +9,8 @@ import ClientDetails from './components/clients/ClientDetails';
 import Projects from './components/projects/Projects';
 import ProjectDetails from './components/projects/ProjectDetails';
 import Leave from './components/leave/Leave';
+import Attendance from './components/attendance/Attendance';
+import Payroll from './components/payroll/Payroll';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
 import Profile from './components/profile/Profile';
@@ -17,7 +19,7 @@ import Revenue from './components/revenue/Revenue';
 function App() {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [currentAuthView, setCurrentAuthView] = useState('signin'); // 'signin', 'signup'
-  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details', 'leave', 'revenue'
+  const [currentView, setCurrentView] = useState('dashboard'); // 'dashboard', 'profile', 'employees', 'clients', 'client-details', 'projects', 'project-details', 'leave', 'attendance', 'payroll', 'revenue'
   const [selectedClient, setSelectedClient] = useState(null);
   const [selectedProject, setSelectedProject] = useState(null);
 
@@ -105,6 +107,10 @@ function App() {
             <Projects onProjectClick={handleProjectClick} />
           ) : currentView === 'leave' ? (
             <Leave />
+          ) : currentView === 'attendance' ? (
+            <Attendance />
+          ) : currentView === 'payroll' ? (
+            <Payroll />
           ) : currentView === 'client-details' ? (
             <ClientDetails client={selectedClient} />
           ) : currentView === 'project-details' ? (
