@@ -58,10 +58,10 @@ const Leave = () => {
             )
         }
         if (status === 'approved') {
-            return <div className="px-5 py-2 rounded-full text-sm font-medium bg-green-100 text-green-700 inline-block text-center w-full max-w-[12rem]">Approved</div>
+            return <div className="px-5 py-2 rounded-full text-sm font-medium bg-green-100 text-green-700 inline-block text-center w-full max-w-48">Approved</div>
         }
         if (status === 'cancelled') {
-            return <div className="px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-600 inline-block text-center w-full max-w-[12rem]">Cancelled</div>
+            return <div className="px-5 py-2 rounded-full text-sm font-medium bg-gray-200 text-gray-600 inline-block text-center w-full max-w-48">Cancelled</div>
         }
         return <div className="text-sm font-medium text-gray-400 text-center">No Request Yet!</div>
     }
@@ -70,11 +70,9 @@ const Leave = () => {
         <div className={styles.pageContainer}>
             <div className={styles.headerRow}>
                 <h2 className={styles.sectionHeadingWrapper}>
-                    <SectionHeading className="!mb-0 text-[1.6rem] md:text-3xl font-bold text-gray-900">Employees Leave</SectionHeading>
+                    <SectionHeading className="mb-0! text-[1.6rem] md:text-3xl font-bold text-gray-900">Employees Leaves</SectionHeading>
                 </h2>
-            </div>
 
-            <div className={styles.controlsRow}>
                 <div className={styles.filtersGroup}>
                     <Button variant="outline" className={styles.filterButton}>
                         Rahul Mishra <ChevronDown size={16} className={styles.chevronIcon} />
@@ -86,10 +84,6 @@ const Leave = () => {
                         <Upload size={16} /> Export
                     </Button>
                 </div>
-            </div>
-
-            <div className="mb-4 mt-6 md:mt-0">
-                <h3 className="text-xl font-bold text-gray-500 mb-4">Leaves</h3>
             </div>
 
             <div className={styles.tableContainer}>
