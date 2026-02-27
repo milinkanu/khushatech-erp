@@ -3,9 +3,9 @@ import { Plus, Upload, ChevronDown } from 'lucide-react';
 import Button from '../Button';
 import AddProjectModal from '../clients/AddProjectModal';
 import ViewProjectModal from '../clients/ViewProjectModal';
-import styles from './Projects.module.css';
+import styles from './Projects.module.css'; // Reuse exactly the same CSS
 
-const Projects = ({ onProjectClick }) => {
+const EmployeeProjects = ({ onProjectClick }) => {
     const [isAddModalOpen, setIsAddModalOpen] = useState(false);
     const [isViewModalOpen, setIsViewModalOpen] = useState(false);
     const [selectedProject, setSelectedProject] = useState(null);
@@ -17,6 +17,7 @@ const Projects = ({ onProjectClick }) => {
             id: '#01Project',
             clientName: 'Rahul Mishra',
             name: 'E Commerce Platform',
+            hasNotification: true,
             priority: 'High',
             type: 'Website',
             startDate: '01/02/2026',
@@ -29,6 +30,7 @@ const Projects = ({ onProjectClick }) => {
             id: '#02Project',
             clientName: 'Rahul Mishra',
             name: 'Food Delivery App',
+            hasNotification: false,
             priority: 'Medium',
             type: 'Mobile App',
             startDate: '01/02/2026',
@@ -41,6 +43,7 @@ const Projects = ({ onProjectClick }) => {
             id: '#03Project',
             clientName: 'Rahul Mishra',
             name: 'Dashboard Analytics',
+            hasNotification: false,
             priority: 'High',
             type: 'Website',
             startDate: '01/02/2026',
@@ -163,11 +166,15 @@ const Projects = ({ onProjectClick }) => {
                                                 <div className={styles.textCell}>{project.clientName}</div>
                                             </td>
                                             <td className={styles.tableCell}>
-                                                <div className={styles.textCell}>{project.name}</div>
+                                                <div className={`${styles.textCell} flex items-center gap-2`}>
+                                                    {project.name}
+                                                    {project.hasNotification && (
+                                                        <span className="w-1.5 h-1.5 rounded-full bg-red-500 shrink-0 inline-block"></span>
+                                                    )}
+                                                </div>
                                             </td>
                                             <td className={styles.tableCell}>
                                                 <span className={styles.badgeHigh}>
-                                                    <span className="w-1.5 h-1.5 rounded-full bg-red-500 inline-block mr-1.5 align-middle"></span>
                                                     {project.priority}
                                                 </span>
                                             </td>
@@ -262,4 +269,4 @@ const Projects = ({ onProjectClick }) => {
     );
 };
 
-export default Projects;
+export default EmployeeProjects;

@@ -1,10 +1,11 @@
-
 import React from 'react';
 import styles from './StatCard.module.css';
 
-const StatCard = ({ icon, value, label, type = 'neutral' }) => {
+const StatCard = ({ icon, value, label, type = 'neutral', colored = false }) => {
+  const cardClassName = `${styles.card} ${colored ? styles[`colored-${type}`] : ''}`;
+
   return (
-    <div className={styles.card}>
+    <div className={cardClassName}>
       <div className={`${styles.iconWrapper} ${styles[type]}`}>
         {icon}
       </div>

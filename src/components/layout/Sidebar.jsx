@@ -10,17 +10,26 @@ import {
     Coins
 } from 'lucide-react';
 
-const Sidebar = ({ activeView, onNavigate }) => {
-    const menuItems = [
-        { name: 'Dashboard', icon: LayoutGrid, active: true },
-        { name: 'Employees', icon: Users, active: false },
-        { name: 'Clients', icon: CircleUser, active: false },
-        { name: 'Projects', icon: FileText, active: false },
-        { name: 'Leave', icon: LogOut, active: false },
-        { name: 'Attendance', icon: CalendarCheck, active: false },
-        { name: 'Payroll', icon: IndianRupee, active: false },
-        { name: 'Revenue', icon: Coins, active: false },
+const Sidebar = ({ activeView, onNavigate, userRole }) => {
+    const allMenuItems = [
+        { name: 'Dashboard', icon: LayoutGrid },
+        { name: 'Employees', icon: Users },
+        { name: 'Clients', icon: CircleUser },
+        { name: 'Projects', icon: FileText },
+        { name: 'Leave', icon: LogOut },
+        { name: 'Attendance', icon: CalendarCheck },
+        { name: 'Payroll', icon: IndianRupee },
+        { name: 'Revenue', icon: Coins },
     ];
+
+    const employeeMenuItems = [
+        { name: 'Dashboard', icon: LayoutGrid },
+        { name: 'Projects', icon: FileText },
+        { name: 'Leave', icon: LogOut },
+        { name: 'Attendance', icon: CalendarCheck },
+    ];
+
+    const menuItems = userRole === 'CEO & Founder' ? allMenuItems : employeeMenuItems;
 
     return (
         <>

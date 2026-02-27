@@ -2,9 +2,12 @@ import React from 'react';
 import SectionHeading from '../SectionHeading';
 import Button from '../Button';
 import { Upload, ChevronDown, Eye } from 'lucide-react';
+import EmployeeAttendanceModal from './EmployeeAttendanceModal';
 import styles from './Attendance.module.css';
 
 const Attendance = () => {
+    const [isModalOpen, setIsModalOpen] = React.useState(false);
+    const [selectedEmployeeName, setSelectedEmployeeName] = React.useState("");
     const records = [
         {
             id: 1,
@@ -109,7 +112,13 @@ const Attendance = () => {
                                     </td>
                                     <td className={styles.actionCell}>
                                         <div className={styles.actionsWrapper}>
-                                            <button className={styles.actionButton}>
+                                            <button
+                                                className={styles.actionButton}
+                                                onClick={() => {
+                                                    setSelectedEmployeeName(record.name);
+                                                    setIsModalOpen(true);
+                                                }}
+                                            >
                                                 <Eye className="w-5 h-5 text-gray-500" />
                                             </button>
                                         </div>
@@ -120,6 +129,11 @@ const Attendance = () => {
                     </table>
                 </div>
             </div>
+            <EmployeeAttendanceModal
+                isOpen={isModalOpen}
+                onClose={() => setIsModalOpen(false)}
+                employeeName={selectedEmployeeName}
+            />
         </div>
     );
 };

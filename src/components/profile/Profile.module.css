@@ -2,6 +2,10 @@
     display: flex;
     flex-direction: column;
     width: 100%;
+    max-width: 900px;
+    /* Constrain max width for desktop reading layout */
+    margin: 0 auto;
+    /* Center it horizontally */
     padding: 0;
     background-color: transparent;
     color: #333333;
@@ -134,11 +138,11 @@
 
 .logoutButton {
     align-self: flex-start;
-    background-color: #FF8c42;
+    background-color: #fe8b4c;
     color: #fff;
     border: none;
     padding: 12px 40px;
-    border-radius: 4px;
+    border-radius: 8px;
     font-size: 16px;
     font-weight: 600;
     cursor: pointer;
@@ -147,24 +151,53 @@
 }
 
 .logoutButton:hover {
-    background-color: #e67e3b;
+    background-color: #f97a36;
 }
 
 @media (max-width: 768px) {
     .formGrid {
-        grid-template-columns: 1fr 1fr;
-        gap: 15px;
+        grid-template-columns: 1fr;
+        gap: 20px;
     }
 
-    /* Make Email (3rd) and Password (4th) span full width */
-    .formGroup:nth-child(3),
-    .formGroup:nth-child(4) {
+    .formGroup {
         grid-column: 1 / -1;
     }
 
     .header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 20px;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        justify-content: space-between;
+        align-items: center;
+        gap: 10px;
+    }
+
+    .userInfo {
+        gap: 12px;
+    }
+
+    .avatarContainer {
+        width: 50px;
+        height: 50px;
+    }
+
+    .userDetails h2 {
+        font-size: 18px;
+    }
+
+    .userDetails p {
+        font-size: 12px;
+    }
+
+    .editButton {
+        padding: 8px 16px;
+        font-size: 13px;
+        margin-left: auto;
+    }
+
+    .logoutButton {
+        width: 100%;
+        align-self: stretch;
+        text-align: center;
     }
 }

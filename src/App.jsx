@@ -7,9 +7,12 @@ import Employees from './components/employees/Employees';
 import Clients from './components/clients/Clients';
 import ClientDetails from './components/clients/ClientDetails';
 import Projects from './components/projects/Projects';
+import EmployeeProjects from './components/projects/EmployeeProjects';
 import ProjectDetails from './components/projects/ProjectDetails';
 import Leave from './components/leave/Leave';
+import EmployeeLeave from './components/leave/EmployeeLeave';
 import Attendance from './components/attendance/Attendance';
+import EmployeeAttendance from './components/attendance/EmployeeAttendance';
 import Payroll from './components/payroll/Payroll';
 import Signin from './components/auth/Signin';
 import Signup from './components/auth/Signup';
@@ -84,19 +87,22 @@ function App() {
                 currentView
           }
           onNavigate={setCurrentView}
+          userRole={user.role}
         />
 
-        <main className="flex-1 py-4 px-4 md:py-8 md:px-8 min-w-0 overflow-auto">
+        <main className="flex-1 py-4 px-4 md:py-8 md:px-8 min-w-0 overflow-auto relative">
+
+          <div className="fixed bottom-4 right-4 md:bottom-8 md:right-8 z-50 flex gap-2">
+            <button
+              onClick={toggleRole}
+              className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow-lg hover:bg-indigo-700 transition-colors"
+            >
+              Switch to {user.role === 'CEO & Founder' ? 'Employee' : 'Admin'} Dashboard
+            </button>
+          </div>
+
           {currentView === 'dashboard' ? (
             <>
-              <div className="mb-6 flex justify-end">
-                <button
-                  onClick={toggleRole}
-                  className="px-4 py-2 bg-indigo-600 text-white text-sm font-medium rounded-lg shadow hover:bg-indigo-700 transition-colors"
-                >
-                  Switch to {user.role === 'CEO & Founder' ? 'Employee' : 'Admin'} Dashboard
-                </button>
-              </div>
               {user.role === 'CEO & Founder' ? <SuperAdminDashboard /> : <EmployeeDashboard onProjectClick={handleProjectClick} />}
             </>
           ) : currentView === 'employees' ? (
@@ -104,11 +110,11 @@ function App() {
           ) : currentView === 'clients' ? (
             <Clients onClientClick={handleClientClick} />
           ) : currentView === 'projects' ? (
-            <Projects onProjectClick={handleProjectClick} />
+            user.role === 'CEO & Founder' ? <Projects onProjectClick={handleProjectClick} /> : <EmployeeProjects onProjectClick={handleProjectClick} />
           ) : currentView === 'leave' ? (
-            <Leave />
+            user.role === 'CEO & Founder' ? <Leave /> : <EmployeeLeave />
           ) : currentView === 'attendance' ? (
-            <Attendance />
+            user.role === 'CEO & Founder' ? <Attendance /> : <EmployeeAttendance />
           ) : currentView === 'payroll' ? (
             <Payroll />
           ) : currentView === 'client-details' ? (

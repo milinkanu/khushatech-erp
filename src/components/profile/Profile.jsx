@@ -7,14 +7,22 @@ const Profile = ({ onLogout }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [isEditing, setIsEditing] = useState(false);
 
-    // Hardcoded information from screenshot as requested
-    // Ignoring the passed 'user' prop for now to ensure these exact details show up
-    const profileData = {
-        firstName: "Khushboo",
-        lastName: "Bharati",
-        email: "khushboobharati18@gmail.com",
-        role: "CEO & Founder",
+    const [profileData, setProfileData] = useState({
+        firstName: "Employee",
+        lastName: "Name",
+        email: "employeeemail@gmail.com",
+        role: "Full Stack Developer",
         avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
+    });
+
+    const [password, setPassword] = useState("password123");
+
+    const handleInputChange = (e) => {
+        const { name, value } = e.target;
+        setProfileData(prev => ({
+            ...prev,
+            [name]: value
+        }));
     };
 
     return (
@@ -29,13 +37,12 @@ const Profile = ({ onLogout }) => {
                         <p>{profileData.role}</p>
                     </div>
                 </div>
-                <Button
-                    variant={isEditing ? 'outline' : 'outline'}
-                    className={styles.editButton} // Keep original style class for layout
+                <button
+                    className={styles.editButton}
                     onClick={() => setIsEditing(!isEditing)}
                 >
                     {isEditing ? 'Save Profile' : 'Edit Profile'}
-                </Button>
+                </button>
             </div>
 
             <div className={styles.formGrid}>
@@ -44,8 +51,10 @@ const Profile = ({ onLogout }) => {
                     <div className={`${styles.inputWrapper} ${!isEditing ? styles.disabled : ''}`}>
                         <input
                             type="text"
+                            name="firstName"
                             className={styles.input}
-                            defaultValue={profileData.firstName}
+                            value={profileData.firstName}
+                            onChange={handleInputChange}
                             disabled={!isEditing}
                         />
                     </div>
@@ -56,8 +65,10 @@ const Profile = ({ onLogout }) => {
                     <div className={`${styles.inputWrapper} ${!isEditing ? styles.disabled : ''}`}>
                         <input
                             type="text"
+                            name="lastName"
                             className={styles.input}
-                            defaultValue={profileData.lastName}
+                            value={profileData.lastName}
+                            onChange={handleInputChange}
                             disabled={!isEditing}
                         />
                     </div>
@@ -68,8 +79,10 @@ const Profile = ({ onLogout }) => {
                     <div className={`${styles.inputWrapper} ${!isEditing ? styles.disabled : ''}`}>
                         <input
                             type="email"
+                            name="email"
                             className={styles.input}
-                            defaultValue={profileData.email}
+                            value={profileData.email}
+                            onChange={handleInputChange}
                             disabled={!isEditing}
                         />
                     </div>
@@ -80,8 +93,10 @@ const Profile = ({ onLogout }) => {
                     <div className={`${styles.inputWrapper} ${!isEditing ? styles.disabled : ''}`}>
                         <input
                             type={showPassword ? "text" : "password"}
+                            name="password"
                             className={styles.input}
-                            defaultValue="password123"
+                            value={password}
+                            onChange={(e) => setPassword(e.target.value)}
                             disabled={!isEditing}
                         />
                         <button
@@ -95,9 +110,9 @@ const Profile = ({ onLogout }) => {
                 </div>
             </div>
 
-            <Button variant="primary" className={styles.logoutButton} onClick={onLogout}>
+            <button className={styles.logoutButton} onClick={onLogout}>
                 Logout
-            </Button>
+            </button>
         </div>
     );
 };

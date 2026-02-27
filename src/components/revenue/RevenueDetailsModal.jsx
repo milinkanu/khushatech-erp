@@ -36,7 +36,6 @@ const RevenueDetailsModal = ({ isOpen, onClose, employee }) => {
                             <table className="w-full">
                                 <thead className={styles.tableHeader}>
                                     <tr>
-                                        <th>Name</th>
                                         <th>Total Amount</th>
                                         <th>Paid</th>
                                         <th>Pending</th>
@@ -46,14 +45,6 @@ const RevenueDetailsModal = ({ isOpen, onClose, employee }) => {
                                 <tbody className={styles.tableBodyContainer}>
                                     {data.map((row, idx) => (
                                         <tr key={idx}>
-                                            <td className={styles.tableCell}>
-                                                <div className="flex items-center gap-3">
-                                                    <div className="shrink-0 h-10 w-10">
-                                                        <img className={styles.avatar} src={row.avatar} alt="" />
-                                                    </div>
-                                                    <div className="text-sm font-medium text-gray-700 underline">{row.name}</div>
-                                                </div>
-                                            </td>
                                             <td className={styles.tableCell}>
                                                 <div className={styles.textCell}>{row.totalAmount}</div>
                                             </td>

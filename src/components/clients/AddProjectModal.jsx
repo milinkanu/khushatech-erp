@@ -30,6 +30,9 @@ const AddProjectModal = ({ isOpen, onClose, showClientSelect }) => {
                                 <option>Mobile App</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div className={styles.formGrid} style={{ marginTop: '1.5rem' }}>
                         <div className={styles.formGroup}>
                             <label className={styles.label}>Priority</label>
                             <select className={styles.select}>
@@ -49,7 +52,7 @@ const AddProjectModal = ({ isOpen, onClose, showClientSelect }) => {
                     </div>
 
                     {showClientSelect && (
-                        <div>
+                        <div className={styles.sectionContainer}>
                             <h3 className={styles.sectionHeading}>Select Client</h3>
                             <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                                 <label className={styles.label}>Clients</label>
@@ -60,7 +63,7 @@ const AddProjectModal = ({ isOpen, onClose, showClientSelect }) => {
                         </div>
                     )}
 
-                    <div>
+                    <div className={styles.sectionContainer}>
                         <h3 className={styles.sectionHeading}>Timeline</h3>
                         <div className={styles.formGrid}>
                             <div className={styles.formGroup}>
@@ -77,26 +80,12 @@ const AddProjectModal = ({ isOpen, onClose, showClientSelect }) => {
                             </div>
                         </div>
                     </div>
-
-                    <div>
-                        <h3 className={styles.sectionHeading}>Financial</h3>
-                        <div className={styles.formGrid}>
-                            <div className={styles.formGroup}>
-                                <label className={styles.label}>Total Cost</label>
-                                <input type="text" className={styles.input} placeholder="₹ 2,50,000" defaultValue="₹ 2,50,000" />
-                            </div>
-                            <div className={styles.formGroup}>
-                                <label className={styles.label}>Advanced Received</label>
-                                <input type="text" className={styles.input} placeholder="₹ 1,25,000" defaultValue="₹ 1,25,000" />
-                            </div>
-                        </div>
-                    </div>
                 </div>
 
                 <div className={styles.modalFooter}>
                     <button className={styles.submitButton}>
                         <Plus size={18} />
-                        Add Project
+                        Add Employee
                     </button>
                 </div>
             </div>

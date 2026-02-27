@@ -32,6 +32,9 @@ const ViewProjectModal = ({ isOpen, onClose, project, showClientSelect }) => {
                                 <option>{project?.name || "UI/UX Designer, Frontend Dev.."}</option>
                             </select>
                         </div>
+                    </div>
+
+                    <div className={styles.formGrid} style={{ marginTop: '1.5rem' }}>
                         <div className={styles.formGroup}>
                             <label className={styles.label}>Priority</label>
                             <select className={styles.select} disabled>
@@ -47,7 +50,7 @@ const ViewProjectModal = ({ isOpen, onClose, project, showClientSelect }) => {
                     </div>
 
                     {showClientSelect && (
-                        <div>
+                        <div style={{ marginTop: '1.5rem' }}>
                             <h3 className={styles.sectionHeading}>Select Client</h3>
                             <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                                 <label className={styles.label}>Clients</label>
@@ -58,7 +61,7 @@ const ViewProjectModal = ({ isOpen, onClose, project, showClientSelect }) => {
                         </div>
                     )}
 
-                    <div>
+                    <div style={{ marginTop: '1.5rem' }}>
                         <h3 className={styles.sectionHeading}>Timeline</h3>
                         <div className={styles.formGrid}>
                             <div className={styles.formGroup}>
@@ -115,7 +118,7 @@ const ViewProjectModal = ({ isOpen, onClose, project, showClientSelect }) => {
                         </div>
                     </div>
 
-                    <div>
+                    <div style={{ marginTop: '1.5rem' }}>
                         <h3 className={styles.sectionHeading}>Team</h3>
                         <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                             <label className={styles.label}>Assigned Developers & Designers</label>
@@ -125,7 +128,7 @@ const ViewProjectModal = ({ isOpen, onClose, project, showClientSelect }) => {
                         </div>
                     </div>
 
-                    <div>
+                    <div style={{ marginTop: '1.5rem' }}>
                         <h3 className={styles.sectionHeading}>Details & Progress</h3>
                         <div className={`${styles.formGroup} ${styles.fullWidth}`}>
                             <label className={styles.label}>Description</label>
