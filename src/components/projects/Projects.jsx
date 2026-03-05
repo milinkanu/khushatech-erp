@@ -159,8 +159,7 @@ const Projects = ({ onProjectClick }) => {
                                     key={index}
                                     style={{ cursor: 'pointer' }}
                                     onClick={() => {
-                                        setSelectedProject(project);
-                                        setIsViewModalOpen(true);
+                                        onProjectClick(project);
                                     }}
                                 >
                                     <td className={styles.tableCell}>
@@ -222,7 +221,8 @@ const Projects = ({ onProjectClick }) => {
                                                 className="hover:text-indigo-600 transition-colors"
                                                 onClick={(e) => {
                                                     e.stopPropagation();
-                                                    // Handle view action
+                                                    setSelectedProject(project);
+                                                    setIsViewModalOpen(true);
                                                 }}
                                             >
                                                 <svg className="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">

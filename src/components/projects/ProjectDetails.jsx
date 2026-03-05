@@ -1,103 +1,134 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ProjectTable from '../employee-dashboard/ProjectTable';
 import styles from './ProjectDetails.module.css';
-import { ChevronDown } from 'lucide-react';
+import { ChevronDown, Eye, Trash2, Edit2, Upload, Plus } from 'lucide-react';
+import Button from '../Button';
 
 const ProjectDetails = ({ project }) => {
     // Mock task data representing tasks for the selected project
     const tasks = [
         {
-            name: 'Homepage UI Design',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Completed',
+            name: 'Backend Setup',
+            priority: 'High',
+            assignedDate: '01/02/2026',
+            assignedTo: 'Owais',
+            progress: '00%',
+            status: 'Not Started',
         },
         {
-            name: 'Payment Bug Fix',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Running',
+            name: 'Homepage UI',
+            priority: 'High',
+            assignedDate: '01/02/2026',
+            assignedTo: 'Faraz',
+            progress: '00%',
+            status: 'In Progress',
         },
         {
-            name: 'Cart API Integration',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Running',
-        },
-        {
-            name: 'Profile Page Responsive',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            isOverdue: true,
-            status: 'Running',
-        },
-        {
-            name: 'Cart API Integration',
-            assignedDate: '11/02/2025',
-            updatedAt: '11/02/2025',
-            dueDate: '11/02/2025',
-            status: 'Running',
+            name: 'About us Page UI',
+            priority: 'High',
+            assignedDate: '01/02/2026',
+            assignedTo: 'Kashyap',
+            progress: '00%',
+            status: 'Done',
         },
     ];
 
+    const getAssignedBadgeStyle = (name) => {
+        if (name === 'Owais') return 'bg-orange-100 text-orange-600';
+        if (name === 'Faraz') return 'bg-green-100 text-green-600';
+        if (name === 'Kashyap') return 'bg-blue-100 text-blue-600';
+        return 'bg-gray-100 text-gray-600';
+    };
+
+    const getStatusStyle = (status) => {
+        if (status === 'Done') return styles.statusDropdownCompleted;
+        if (status === 'In Progress') return styles.statusDropdownRunning;
+        return styles.statusDropdownOverdue; // Reusing for 'Not Started'
+    };
+
     return (
-        <div className="flex flex-col gap-6">
-            <h1 className="text-2xl font-bold text-gray-900">{project.name}</h1>
+        <div className={styles.pageContainer}>
+            <div className={styles.headerRow}>
+                <h1 className="text-2xl font-bold text-gray-900">
+                    <span className="text-gray-500 font-normal">All Projects {'>'} </span>
+                    {project?.name || 'E Commerce Platform'}
+                </h1>
+            </div>
+
+            <div className={styles.controlsRow}>
+                <div className="flex items-center gap-4">
+                    <button className={styles.tabButtonActive}>All Task</button>
+                    <button className={styles.filterButton}>
+                        Assigned to <ChevronDown size={16} className={styles.chevronIcon} />
+                    </button>
+                    <Button variant="primary" className={styles.assignButton}>
+                        <Plus size={18} /> Assign Task
+                    </Button>
+                </div>
+
+                <div className={styles.filtersGroup}>
+                    <button className={styles.filterButton}>
+                        Rahul Mishra <ChevronDown size={16} className={styles.chevronIcon} />
+                    </button>
+                    <button className={styles.filterButton}>
+                        Date <ChevronDown size={16} className={styles.chevronIcon} />
+                    </button>
+                    <button className={styles.exportButton}>
+                        <Upload size={16} /> Export
+                    </button>
+                </div>
+            </div>
 
             <div className={styles.tableContainer}>
-                <div className={styles.header}>
-                    <h3 className={styles.title}>Task</h3>
-                    <select className={styles.filter} defaultValue="default">
-                        <option value="default" disabled>Filter By Status</option>
-                        <option value="all">All Tasks</option>
-                        <option value="completed">Completed</option>
-                        <option value="running">Running</option>
-                    </select>
-                </div>
-                <div className={styles.tableWrapper}>
-                    <table className={styles.table}>
+                <div className={`${styles.tableWrapper} ${styles.customScrollbar}`}>
+                    <table className={styles.table} style={{ minWidth: '1000px' }}>
                         <thead>
                             <tr>
-                                <th>Task</th>
+                                <th>Task Name</th>
+                                <th>Priority</th>
                                 <th>Assigned Date</th>
-                                <th>Updated At</th>
-                                <th>Due Date</th>
+                                <th>Assigned to</th>
+                                <th>Progress</th>
                                 <th>Status</th>
+                                <th>Action</th>
                             </tr>
                         </thead>
                         <tbody>
                             {tasks.map((task, index) => (
                                 <tr key={index}>
                                     <td>
-                                        <span className="font-medium text-gray-500">{task.name}</span>
+                                        <span className="font-medium text-gray-700">{task.name}</span>
+                                    </td>
+                                    <td>
+                                        <span className="bg-green-50 text-green-600 px-3 py-1 rounded-full text-xs font-medium">
+                                            {task.priority}
+                                        </span>
                                     </td>
                                     <td>{task.assignedDate}</td>
-                                    <td>{task.updatedAt}</td>
                                     <td>
-                                        {task.isOverdue ? (
-                                            <span className={styles.overdate}>
-                                                ⚠️ {task.dueDate}
-                                            </span>
-                                        ) : (
-                                            task.dueDate
-                                        )}
+                                        <span className={`px-3 py-1 rounded-full text-xs font-medium ${getAssignedBadgeStyle(task.assignedTo)}`}>
+                                            {task.assignedTo}
+                                        </span>
                                     </td>
+                                    <td>{task.progress}</td>
                                     <td>
-                                        <span
-                                            className={
-                                                task.status === 'Completed'
-                                                    ? styles.statusDropdownCompleted
-                                                    : task.status === 'Running' && !task.isOverdue
-                                                        ? styles.statusDropdownRunning
-                                                        : styles.statusDropdownOverdue
-                                            }
-                                        >
+                                        <span className={getStatusStyle(task.status)}>
+                                            <span className={`w-1.5 h-1.5 rounded-full inline-block mr-1.5 align-middle ${task.status === 'Done' ? 'bg-green-500' : task.status === 'In Progress' ? 'bg-blue-500' : 'bg-gray-500'}`}></span>
                                             {task.status} <ChevronDown size={14} className="ml-1" />
                                         </span>
+                                    </td>
+                                    <td>
+                                        <div className="flex items-center gap-3 text-gray-400">
+                                            <span className="hover:text-indigo-600 cursor-pointer transition-colors">
+                                                <Eye size={18} />
+                                            </span>
+                                            <span className="hover:text-red-500 cursor-pointer transition-colors">
+                                                <Trash2 size={18} />
+                                            </span>
+                                            <span className="hover:text-indigo-600 cursor-pointer transition-colors">
+                                                <Edit2 size={18} />
+                                            </span>
+                                        </div>
                                     </td>
                                 </tr>
                             ))}

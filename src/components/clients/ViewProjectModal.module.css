@@ -159,5 +159,15 @@
 
     .formGrid {
         grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    .modalHeader {
+        padding: 1.25rem 1.25rem;
+    }
+
+    .modalBody {
+        padding: 1.25rem;
+        gap: 1.5rem;
     }
 }
